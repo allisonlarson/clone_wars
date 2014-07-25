@@ -1,3 +1,4 @@
+require 'Sinatra'
 class PlayerApp < Sinatra::Base
 
   not_found do
