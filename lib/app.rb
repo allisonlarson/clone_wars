@@ -8,4 +8,9 @@ class PlayerApp < Sinatra::Base
     erb :index
   end
 
+  get '/who-we-are/' do
+    erb :who_we_are
+  end
+
+
 end

@@ -8,6 +8,8 @@ describe 'Integration Tests' do
     PlayersApp
   end
 
-  it 'goes places' do
+  it 'goes to new pages' do
+    get '/'
+    assert last.response.ok?
   end
 end
