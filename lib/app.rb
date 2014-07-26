@@ -1,24 +1,13 @@
-<<<<<<< HEAD
 require 'Haml'
 
-=======
-require 'Sinatra'
->>>>>>> 0051f712987b4cc89a39637cb91728dcbdf59bf0
 class PlayerApp < Sinatra::Base
   set :method_override, true
   set :root, '/lib/app'
   set :views, File.dirname(__FILE__) + '/app/views'
-  # set :public, File.dirname(__FILE__) + '/app/public'
 
-  # helpers do
-  #   def partial template
-  #     haml template, :layout => false
-  #   end
-  # end
-
-  # not_found do
-  #   haml :error
-  # end
+  not_found do
+    haml :error
+  end
 
   get '/' do
     haml :index
@@ -52,37 +41,36 @@ class PlayerApp < Sinatra::Base
     haml :update_gift_cards
   end
 
+  get '/who_we_are' do
+    haml :who_we_are
+  end
 
+  get '/what_we_carry' do
+    haml :what_we_carry
+  end
 
+  get '/what_we_do' do
+    haml :what_we_do
+  end
 
+  get '/outfit_of_the_week' do
+    haml :outfit_of_the_week
+  end
 
-  # get '/admin/time
-  #   :time
-  #  end
-  #
-  # get '/what_we_carry/' do
-  #   haml :what_we_carry
-  # end
+  get '/gift_cards' do
+    haml :gift_cards
+  end
 
-  #
-  # get '/whats_new/' do
-  #   haml :whats_new
-  # end
-  #
-  # get '/gift_cards/' do
-  #   haml :gift_cards
-  # end
-  #
-  # get '/find_us' do
-  #   haml :find_us
-  # end
-  #
-  # get '/blog/' do
-  #   haml :blog
-  # end
-  #
-  # get '/mvp_club' do
-  #   haml :mvp_club
-  # end
+  get '/find_us' do
+    haml :find_us
+  end
+
+  get '/blog' do
+    haml :blog
+  end
+
+  get '/mvp_club' do
+    haml :mvp_club
+  end
 
 end
