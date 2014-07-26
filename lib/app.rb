@@ -1,45 +1,84 @@
+require 'Haml'
+
 class PlayerApp < Sinatra::Base
   set :method_override, true
-  set :root, 'lib/app'
+  set :root, '/lib/app'
+  set :views, File.dirname(__FILE__) + '/app/views'
+  # set :public, File.dirname(__FILE__) + '/app/public'
 
-  not_found do
-    erb :error
-  end
+  # helpers do
+  #   def partial template
+  #     haml template, :layout => false
+  #   end
+  # end
+
+  # not_found do
+  #   haml :error
+  # end
 
   get '/' do
-    erb :index
+    haml :index
   end
 
-  get '/who_we_are/' do
-    erb :who_we_are
+  get '/admin' do
+    haml :admin
   end
 
-  get '/what_we_carry/' do
-    erb :what_we_carry
+  get '/admin/update_home' do
+    haml :update_home
   end
 
-  get '/what_we_do/'
-    erb :what_we_do
+  get '/admin/update_who_we_are' do
+    haml :update_who_we_are
   end
 
-  get '/whats_new/'
-    erb :whats_new
+  get '/admin/update_what_we_carry' do
+    haml :update_what_we_carry
   end
 
-  get '/gift_cards/'
-    erb :gift_cards
+  get '/admin/update_what_we_do' do
+    haml :update_what_we_do
   end
 
-  get '/find_us'
-    erb :find_us
+  get '/admin/update_outfit_of_the_week' do
+    haml :update_outfit_of_the_week
   end
 
-  get '/blog/'
-    erb :blog
+  get '/admin/update_gift_cards' do
+    haml :update_gift_cards
   end
 
-  get '/mvp_club'
-    erb :mvp_club
-  end
+
+
+
+
+  # get '/admin/time
+  #   :time
+  #  end
+  #
+  # get '/what_we_carry/' do
+  #   haml :what_we_carry
+  # end
+
+  #
+  # get '/whats_new/' do
+  #   haml :whats_new
+  # end
+  #
+  # get '/gift_cards/' do
+  #   haml :gift_cards
+  # end
+  #
+  # get '/find_us' do
+  #   haml :find_us
+  # end
+  #
+  # get '/blog/' do
+  #   haml :blog
+  # end
+  #
+  # get '/mvp_club' do
+  #   haml :mvp_club
+  # end
 
 end
