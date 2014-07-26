@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 require 'Haml'
 
+=======
+require 'Sinatra'
+>>>>>>> 0051f712987b4cc89a39637cb91728dcbdf59bf0
 class PlayerApp < Sinatra::Base
   set :method_override, true
   set :root, '/lib/app'
