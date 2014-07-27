@@ -64,7 +64,7 @@ class PlayerApp < Sinatra::Base
   post '/login' do
     if params[:user] == "ad" && params[:password] == "ad"
       session[:user] = "player"
-      redirect '/admin/dashboard'
+      redirect '/admin/update_dashboard'
     else
       redirect '/'
     end
@@ -75,9 +75,9 @@ class PlayerApp < Sinatra::Base
     session[:user] = nil
   end
 
-  get '/admin/dashboard' do
+  get '/admin/update_dashboard' do
     authenticate!
-    haml :dashboard
+    haml :update_dashboard
   end
 
   get '/admin/update_home' do
@@ -118,6 +118,11 @@ class PlayerApp < Sinatra::Base
   get '/admin/update_blog' do
     authenticate!
     haml :update_blog
+  end
+
+  get '/admin/update_schedule' do
+    authenticate!
+    haml :update_schedule
   end
 
 end
