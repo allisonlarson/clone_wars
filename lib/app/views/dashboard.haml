@@ -1,19 +1,27 @@
-#left-column{:style => "float:left; margin-right:30px; width:30%; height:100%; background:#E6E6FA"}
-  %ul
-    %li
-      %a{:href => "/admin/update_home"} Home
-    %li
-      %a{:href => "/admin/update_who_we_are"} Who we are
-    %li
-      %a{:href => "/admin/update_what_we_carry"} What we carry
-    %li
-      %a{:href => "/admin/update_what_we_do"} What we do
-    %li
-      %a{:href => "/admin/update_outfit_of_the_week"} Outfit of the Week
-    %li
-      %a{:href => "/admin/update_gift_cards"} Gift Cards
-    %li
-      %a{:href => "/admin/update_find_us"} Find us
-    %li
-      %a{:href => "/admin/update_blog"} Blog
-.right-column{:style => "float:left; width:65%; height:100%; background:#FFFFE0"}
+- if session[:user] == "player"
+  #left-column{:style => "float:left; margin-right:30px; width:30%; height:100%; background:#E6E6FA"}
+    ="Wellcome #{session[:user]}"
+    %br
+    %ul
+      %li
+        %a{:href => "/admin/update_home"} Home
+      %li
+        %a{:href => "/admin/update_who_we_are"} Who we are
+      %li
+        %a{:href => "/admin/update_what_we_carry"} What we carry
+      %li
+        %a{:href => "/admin/update_what_we_do"} What we do
+      %li
+        %a{:href => "/admin/update_outfit_of_the_week"} Outfit of the Week
+      %li
+        %a{:href => "/admin/update_gift_cards"} Gift Cards
+      %li
+        %a{:href => "/admin/update_find_us"} Find us
+      %li
+        %a{:href => "/admin/update_blog"} Blog
+      %li
+        %a{:href => "/logout"} Logout
+
+  .right-column{:style => "float:left; width:65%; height:100%; background:#FFFFE0"}
+- else
+  %p hey
