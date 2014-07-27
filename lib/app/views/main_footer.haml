@@ -1,0 +1,39 @@
+#footer
+  #siteinfo
+    #footerLeftLayout
+      %p Mon-Fri 10am-6pm | Sat 10am-5:30pm
+      %p Evenings by appointment
+    / id="footerLeftLayout"
+    #footerRightLayout
+      %p Players Men's Sport &amp; Business Casual Wear | LoDo
+      %p 1501 Wazee Street, Denver, CO 80202 | 303.PLAYERS
+    / id="footerRightLayout"
+  / #siteinfo
+/ #footer
+#afterFooterLayout
+  %table
+    %tr
+      %td
+        %p ©2014 Players Clothing, Denver, CO 80202
+      %td{:style => "text-align: right;"}
+        %p
+          By
+          = succeed "," do
+            %a{:href => "#", :target => "_blank", :title => "e-maillogic.com"} some amazing Turing Students
+/ id="afterFooterLayout"
+/ #wrapper .hfeed
+/ CataBlog 1.6.3 LightBox JavaScript | http://catablog.illproductions.com/
+:javascript
+var js_i18n=new Object; js_i18n.prev_tip="You may also press "P" or the left arrow on your keyboard"; js_i18n.next_tip="You may also press "N" or the right arrow on your keyboard"; js_i18n.close_tip='Close LightBox Now'; js_i18n.prev_label='PREV'; js_i18n.next_label='NEXT'; js_i18n.close_label='CLOSE'; jQuery(document).ready(function(){ jQuery('.catablog-image').catablogLightbox(); });      / End CataBlog LightBox JavaScript
+:javascript
+$(window).load(function() {
+$('#slider').nivoSlider({
+            effect:'fade',
+            animSpeed:900, //Slide transition speed
+            pauseTime:4000,
+            directionNav:false, //Next & Prev
+            controlNav:false,
+            pauseOnHover:false //Stops animation while hovering
+        });
+});
+               / id="pre-wrapper"

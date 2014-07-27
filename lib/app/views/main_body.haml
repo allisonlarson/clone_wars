@@ -1,0 +1,21 @@
+:javascript
+  var resizeBg = function(){
+  var h = self.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+  var w = self.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  var elem = document.getElementById("backgroundImage");
+  /* the original script had this if statement, which I understand and wa causing the backgraound image to h=1280*/
+  /*if(w > h){
+      elem.width = w;
+      elem.height = w;
+  }
+  else{
+      elem.height = h;
+      elem.width = h;
+  }*/
+  elem.width = w;
+  elem.height = h;
+  //alert(" var w: "+w+"\n var h: "+h);
+  }
+      #background
+  %img#backgroundImage{:height => "1", :onload => "resizeBg();", :src => "http://playersclothing.com/wp-content/themes/playersclothing/images/backg-viewport.gif", :width => "1"}/
+/ id="background"

@@ -13,34 +13,6 @@ class PlayerApp < Sinatra::Base
     haml :index
   end
 
-  get '/admin' do
-    haml :admin
-  end
-
-  get '/admin/update_home' do
-    haml :update_home
-  end
-
-  get '/admin/update_who_we_are' do
-    haml :update_who_we_are
-  end
-
-  get '/admin/update_what_we_carry' do
-    haml :update_what_we_carry
-  end
-
-  get '/admin/update_what_we_do' do
-    haml :update_what_we_do
-  end
-
-  get '/admin/update_outfit_of_the_week' do
-    haml :update_outfit_of_the_week
-  end
-
-  get '/admin/update_gift_cards' do
-    haml :update_gift_cards
-  end
-
   get '/who_we_are' do
     haml :who_we_are
   end
@@ -71,6 +43,46 @@ class PlayerApp < Sinatra::Base
 
   get '/mvp_club' do
     haml :mvp_club
+  end
+
+  get '/admin' do
+    haml :admin
+  end
+
+  get '/admin/dashboard' do
+    haml :dashboard
+  end
+
+  get '/admin/update_home' do
+    haml :update_home
+  end
+
+  get '/admin/update_who_we_are' do
+    haml :update_who_we_are
+  end
+
+  get '/admin/update_what_we_carry' do
+    haml :update_what_we_carry
+  end
+
+  get '/admin/update_what_we_do' do
+    haml :update_what_we_do
+  end
+
+  get '/admin/update_outfit_of_the_week' do
+    haml :update_outfit_of_the_week
+  end
+
+  get '/admin/update_gift_cards' do
+    haml :update_gift_cards
+  end
+
+  get '/admin/update_find_us' do
+    haml :update_find_us
+  end
+
+  get '/admin/update_blog' do
+    haml :update_blog
   end
 
 end
