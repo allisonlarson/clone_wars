@@ -11,7 +11,7 @@ class PlayerApp < Sinatra::Base
 
   helpers do
     def authenticate!
-      if params[:user] == "admin" && params[:password] == "admin"
+      if params[:user] == "ad" && params[:password] == "ad"
         session[:user] == "admin"
       end
     end
@@ -73,6 +73,11 @@ class PlayerApp < Sinatra::Base
   get '/logout' do
     haml :index
     session[:user] = nil
+    redirect '/'
+  end
+
+  get '/not_here' do
+    haml :not_here
   end
 
   get '/admin/update_dashboard' do

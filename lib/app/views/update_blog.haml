@@ -1,11 +1,14 @@
-%form{:action => "/admin/:id/update_blog", :method => "POST"}
-  %input{:placeholder => "Author"}
-  %input{:placeholder => "Published Date"}
-  %input{:placeholder => "Title"}
-  %br
-  %textarea{:placeholder => "Description"}
-  %br
-  %input{:type => "submit"}
-  
-  %br
-  %a{:href => "/admin/update_dashboard"} Temporary shortcut to dashboard
+- if session[:user] == "player"
+  %form{:action => "/admin/:id/update_blog", :method => "POST"}
+    %input{:placeholder => "Author"}
+    %input{:placeholder => "Published Date"}
+    %input{:placeholder => "Title"}
+    %br
+    %textarea{:placeholder => "Description"}
+    %br
+    %input{:type => "submit"}
+
+    %br
+    %a{:href => "/admin/update_dashboard"} Temporary shortcut to dashboard
+- else
+  = haml :not_here

@@ -1,12 +1,15 @@
-%form{:action => "/admin/update_what_we_carry", :method => "POST"}
-  %input{:placeholder => "Title"}
-  %br
-  %textarea{:placeholder => "Description"}
-  %br
-  %input{:type => "file"}
-  %br
-  %input{:type => "submit"}
+- if session[:user] == "player"
+  %form{:action => "/admin/update_what_we_carry", :method => "POST"}
+    %input{:placeholder => "Title"}
+    %br
+    %textarea{:placeholder => "Description"}
+    %br
+    %input{:type => "file"}
+    %br
+    %input{:type => "submit"}
 
 
-  %br
-  %a{:href => "/admin/update_dashboard"} Temporary shortcut to dashboard
+    %br
+    %a{:href => "/admin/update_dashboard"} Temporary shortcut to dashboard
+- else
+  = haml :not_here

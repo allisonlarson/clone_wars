@@ -1,10 +1,13 @@
-.weekly_styles
-  %form{:action => "/admin/update_outfit_of_the_week", :method => "POST"}
-  %input{:placeholder => "date"}
-  %br
-  %input{:type => "file"}
-  %br
-  %input{:type => "submit"}
+- if session[:user] == "player"
+  .weekly_styles
+    %form{:action => "/admin/update_outfit_of_the_week", :method => "POST"}
+    %input{:placeholder => "date"}
+    %br
+    %input{:type => "file"}
+    %br
+    %input{:type => "submit"}
 
-  %br
-  %a{:href => "/admin/update_dashboard"} Temporary shortcut to dashboard
+    %br
+    %a{:href => "/admin/update_dashboard"} Temporary shortcut to dashboard
+- else
+  = haml :not_here

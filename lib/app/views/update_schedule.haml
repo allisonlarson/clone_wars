@@ -1,8 +1,11 @@
-%form{:action => "/admin/update_schedule", :method => "POST"}
-  %input{:placeholder => "Schedule"}
-  %br
-  %input{:type => "submit"}
+- if session[:user] == "player"
+  %form{:action => "/admin/update_schedule", :method => "POST"}
+    %input{:placeholder => "Schedule"}
+    %br
+    %input{:type => "submit"}
 
 
-  %br
-  %a{:href => "/admin/update_dashboard"} Temporary shortcut to dashboard
+    %br
+    %a{:href => "/admin/update_dashboard"} Temporary shortcut to dashboard
+- else
+  = haml :not_here

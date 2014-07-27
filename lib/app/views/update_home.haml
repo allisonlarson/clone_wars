@@ -1,12 +1,15 @@
-%form{:action => "/admin/update_home", :method => "POST"}
-  %label Picture 1
-  %input{:name => "home[picture1]", :type => "file"}
-  %br
-  %label Picture 2
-  %input{:name => "home[picture1]", :type => "file"}
-  %br
-  %label Picture 3
-  %input{:name => "home[picture1]", :type => "file"}  
+- if session[:user] == "player"
+  %form{:action => "/admin/update_home", :method => "POST"}
+    %label Picture 1
+    %input{:name => "home[picture1]", :type => "file"}
+    %br
+    %label Picture 2
+    %input{:name => "home[picture1]", :type => "file"}
+    %br
+    %label Picture 3
+    %input{:name => "home[picture1]", :type => "file"}
 
-  %br
-  %a{:href => "/admin/update_dashboard"} Temporary shortcut to dashboard
+    %br
+    %a{:href => "/admin/update_dashboard"} Temporary shortcut to dashboard
+- else
+  = haml :not_here
