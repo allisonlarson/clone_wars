@@ -1,4 +1,21 @@
 - if session[:user] == "player"
+  #front_views.row
+  - if @front_views.empty?
+    No entries in Players
+  - else
+    - @front_views.each do |front_view|
+      .front_view
+      %h1= "#{front_view.title}"
+      %p
+        %strong Description:
+        = front_view.description
+      %p
+        %strong Image:
+        = front_view.image_file
+      .actions
+        %a.button{:href => "/admin/edit/#{front_view.id}"} Edit
+        %a.button{:href => "/delete/#{front_view.id}"} Delete
+
   #left-column{:style => "float:left; margin-right:30px; width:30%; height:100%; background:#E6E6FA"}
     ="Wellcome #{session[:user]}"
     %br
@@ -6,7 +23,7 @@
       %li
         %a{:href => "/admin/update_home"} Home
       %li
-        %a{:href => "/admin/update_who_we_are"} Who we are
+        %a{:href => "/admin/edit/1"} Who we are
       %li
         %a{:href => "/admin/update_what_we_carry"} What we carry
       %li
