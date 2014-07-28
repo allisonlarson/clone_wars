@@ -1,4 +1,23 @@
 - if session[:user] == "player"
+  #front_views.row
+  - if @front_views.empty?
+    .empty-phonebook.columns-12
+      No entries in the phonebook
+  - else
+    - @front_views.each do |front_view|
+      .columns-4
+        .front_view
+          %h1= "#{front_view.title}"
+          %p
+            %strong Phone:
+            = front_view.description
+          %p
+            %strong Email:
+            = front_view.image_file
+          .actions
+            %a.button{:href => "/admin/edit/#{front_view.id}"} Edit
+            %a.button{:href => "/delete/#{front_view.id}"} Delete
+
   #left-column{:style => "float:left; margin-right:30px; width:30%; height:100%; background:#E6E6FA"}
     ="Wellcome #{session[:user]}"
     %br
