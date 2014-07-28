@@ -59,7 +59,11 @@ class PlayerApp < Sinatra::Base
   end
 
   get '/login' do
-    haml :login
+    if session[:user] == "player"
+      redirect "/admin/update_dashboard"
+    else
+      haml :login
+    end
   end
 
   post '/login' do
@@ -139,7 +143,7 @@ class PlayerApp < Sinatra::Base
     @front_view.update_fields(params[:front_view], [:title, :description, :image_file])
     @front_view.updated_at = Time.now.to_s
     if @front_view.save
-      redirect "/"
+      redirect "/admin/update_dashboard"
     else
       redirect "/edit/#{@front_view.id}"
     end
