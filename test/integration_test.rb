@@ -6,7 +6,7 @@ describe 'Integration Tests' do
   include Rack::Test::Methods
 
   def app
-    PlayersApp.new
+    PlayersApp
   end
 
   it 'goes to new pages' do
