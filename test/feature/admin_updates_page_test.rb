@@ -29,5 +29,8 @@ class UserUpdatesPage <FeatureTest
     assert page.has_content?("We Are PLAYERs")
     assert page.has_content?('For sure for sure')
   end
-  
+
+  #As A [User ]
+  #When I [fail login]
+  #Then i [play pacman]
 end

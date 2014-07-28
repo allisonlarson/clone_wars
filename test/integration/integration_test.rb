@@ -30,4 +30,6 @@ class IntegrationTest < IntegrateTest
 
   def test_it_deletes_blog_post
   end
+
+
 end
