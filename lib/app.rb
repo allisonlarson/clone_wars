@@ -1,5 +1,6 @@
 require 'Haml'
 require_relative 'models'
+require 'sinatra'
 
 
 class PlayerApp < Sinatra::Base
