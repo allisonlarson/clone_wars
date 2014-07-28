@@ -1,0 +1,4 @@
+%a{:href => "/admin/update_dashboard"} Back
+%h1= @page_title
+%p.description= @page_description
+= erb :_form, locals: {action: "post", route: "/update/#{@contact.id}"}

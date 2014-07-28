@@ -1,4 +1,5 @@
 require 'Haml'
+require_relative 'models'
 
 class PlayerApp < Sinatra::Base
   set :method_override, true
@@ -85,6 +86,13 @@ class PlayerApp < Sinatra::Base
     haml :update_dashboard
   end
 
+  get '/admin/edit/:id' do
+    @page_title = "Edit Entry"
+    @page_description = "Edit an existing entry"
+    @front_view = FrontView[params[:id].to_i]
+    erb :edit
+  end
+
   get '/admin/update_home' do
     authenticate!
     haml :update_home
@@ -92,7 +100,9 @@ class PlayerApp < Sinatra::Base
 
   get '/admin/update_who_we_are' do
     authenticate!
-    haml :update_who_we_are
+    @page_title = "Front view Editor"
+    @front_view = FrontView.new
+    haml :update_who_we_are, locals: {action: "post", route: "/create"}
   end
 
   get '/admin/update_what_we_carry' do
@@ -128,6 +138,12 @@ class PlayerApp < Sinatra::Base
   get '/admin/update_schedule' do
     authenticate!
     haml :update_schedule
+  end
+
+  get '/db' do
+    insert_into_tb_regular_view
+    results = @database.fetch "SELECT * from people;"
+    print results.to_a
   end
 
 end

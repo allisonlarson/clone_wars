@@ -1,0 +1,22 @@
+.row
+  %form{"accept-charset" => "utf-8", :action => route, :method => action}
+    .columns-6
+      %label{:for => "first_name"} First Name:
+      %input#first_name{:name => "contact[first_name]", :type => "text", :value => @contact.first_name}/
+    .columns-6
+      %label{:for => "last_name"} Last Name:
+      %input#last_name{:name => "contact[last_name]", :type => "text", :value => @contact.last_name}/
+    .columns-6
+      %label{:for => "phone_number"} Phone Number:
+      %input#phone_number{:name => "contact[phone_number]", :type => "text", :value => @contact.phone_number}/
+    .columns-6
+      %label{:for => "email_address"} Email Address:
+      %input#email_address{:name => "contact[email_address]", :type => "text", :value => @contact.email_address}/
+    .columns-6
+      %label{:for => "full_address"} Full Address
+      %textarea#full_address{:cols => "40", :name => "contact[full_address]", :rows => "4"}= @contact.full_address
+    .columns-6
+      %label{:for => "notes"} Notes:
+      %textarea#notes{:cols => "40", :name => "contact[notes]", :rows => "4"}= @contact.notes
+    .columns-12
+      %button{:type => "submit"} Save Contact
