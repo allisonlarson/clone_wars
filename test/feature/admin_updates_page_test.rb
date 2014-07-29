@@ -182,6 +182,8 @@ class AdminUpdatesPage <FeatureTest
     login
     visit '/admin/update_blog'
     assert_equal 200, page.status_code
+    assert page.has_css?("input", :count => 4, :visible => true)
+    assert page.has_css?("#blog-author")
   end
 
   def test_admin_can_edit_blog

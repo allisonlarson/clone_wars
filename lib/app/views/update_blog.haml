@@ -1,8 +1,8 @@
 - if session[:user] == "player"
   %form{:action => "/admin/:id/update_blog", :method => "POST"}
-    %input{:placeholder => "Author"}
-    %input{:placeholder => "Published Date"}
-    %input{:placeholder => "Title"}
+    %input#blog-author{:placeholder => "Author"}
+    %input#blog-date{:placeholder => "Published Date"}
+    %input#blog-title{:placeholder => "Title"}
     %br
     %textarea{:placeholder => "Description"}
     %br
