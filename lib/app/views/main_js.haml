@@ -4,6 +4,9 @@
 %script{:src => "http://playersclothing.com/wp-content/plugins/catablog/js/catablog.lightbox.js?ver=1.6.3", :type => "text/javascript"}
 %script{:charset => "utf-8", :type => "text/javascript"} var switchTo5x=true;
 %script{:charset => "utf-8", :src => "http://w.sharethis.com/button/buttons.js", :type => "text/javascript"}
+%script{:src => "http://tinymce.cachefly.net/4.1/tinymce.min.js"}
+:javascript
+  tinymce.init({selector:'textarea'});
 :javascript
   stLight.options({publisher:'6de78048-e825-4368-bc5b-4ce542f65c77'});var st_type='wordpress3.3.1';    %link{:href => "http://playersclothing.com/wp-content/themes/playersclothing/images/favicon.ico", :rel => "shortcut icon"}
   %script{:src => "http://playersclothing.com/wp-content/themes/thematic/library/scripts/hoverIntent.js", :type => "text/javascript"}

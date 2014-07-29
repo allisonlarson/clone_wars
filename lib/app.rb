@@ -114,15 +114,11 @@ class PlayerApp < Sinatra::Base
   end
 
   get '/admin/new_front_view' do
-    @page_title = "New Entry"
-    @page_description = "Add a new entry to your Players"
     @front_view = FrontView.new
     haml :new_front_view
   end
 
   get '/admin/edit/:id' do
-    @page_title = "Edit Entry"
-    @page_description = "Edit an existing entry"
     @front_view = FrontView[params[:id].to_i]
     haml :edit
   end
@@ -156,7 +152,6 @@ class PlayerApp < Sinatra::Base
 
   get '/admin/update_who_we_are' do
     authenticate!
-    @page_title = "Front view Editor"
     @front_view = FrontView.new
     haml :update_who_we_are, locals: {action: "post", route: "/create"}
   end

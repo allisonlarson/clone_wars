@@ -1,4 +1,2 @@
 %a{:href => "/admin/update_dashboard"} Back
-%h1= @page_title
-%p.description= @page_description
-= haml :form, locals: {action: "post", route: "/admin/update/#{@front_view.id}"}
+= erb :form, locals: {action: "post", route: "/admin/update/#{@front_view.id}"}

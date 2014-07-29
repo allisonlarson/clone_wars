@@ -1,9 +1,0 @@
-.row
-  %form{"accept-charset" => "utf-8", :action => route, :method => action}
-    %label{:for => "title"} Title:
-    %input#title{:name => "front_view[title]", :type => "text", :value => @front_view.title}/
-    %label{:for => "description"} Description:
-    %input#description{:name => "front_view[description]", :type => "text", :value => @front_view.description}/
-    %label{:for => "image_file"} Image File:
-    %input#image_file{:name => "front_view[image_file]", :type => "text", :value => @front_view.image_file}/
-    %button{:type => "submit"} Save Front View
