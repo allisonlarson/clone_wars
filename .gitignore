@@ -5,8 +5,7 @@
 *.sqlite
 
 #COVERAGE#
-coverage/*.json
-coverage/*.html
+coverage
 
 
 # OS generated files #
