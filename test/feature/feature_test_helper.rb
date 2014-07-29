@@ -7,7 +7,4 @@ Capybara.app = PlayerApp
 
 class FeatureTest < Minitest::Test
   include Capybara::DSL
-
-  
-
 end
