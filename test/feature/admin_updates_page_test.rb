@@ -50,9 +50,41 @@ class AdminUpdatesPage <FeatureTest
     #code that uploads photos here
   end
 
-  def test_admin_can_view_edit_page
+  def test_admin_can_view_edit_1_page
     login
     visit '/admin/edit/1'
+    assert_equal 200, page.status_code
+    assert page.has_css?("input", :count => 2, :visible => "true")
+    assert page.has_button?("Save Front View")
+  end
+
+  def test_admin_can_view_edit_2_page
+    login
+    visit '/admin/edit/2'
+    assert_equal 200, page.status_code
+    assert page.has_css?("input", :count => 2, :visible => "true")
+    assert page.has_button?("Save Front View")
+  end
+
+  def test_admin_can_view_edit_3_page
+    login
+    visit '/admin/edit/3'
+    assert_equal 200, page.status_code
+    assert page.has_css?("input", :count => 2, :visible => "true")
+    assert page.has_button?("Save Front View")
+  end
+
+  def test_admin_can_view_edit_4_page
+    login
+    visit '/admin/edit/4'
+    assert_equal 200, page.status_code
+    assert page.has_css?("input", :count => 2, :visible => "true")
+    assert page.has_button?("Save Front View")
+  end
+
+  def test_admin_can_view_edit_5_page
+    login
+    visit '/admin/edit/5'
     assert_equal 200, page.status_code
     assert page.has_css?("input", :count => 2, :visible => "true")
     assert page.has_button?("Save Front View")
