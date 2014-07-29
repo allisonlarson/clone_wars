@@ -43,15 +43,28 @@ class AdminUpdatesPage <FeatureTest
     assert page.has_css?("#picture-button3")
   end
 
-  def test_admin_can_edit_update_home
+  def test_admin_can_upload_home_photos
+    login
+    visit '/admin/update_home'
+    assert_equal 200, page.status_code
+    #code that uploads photos here
+  end
+
+  def test_admin_can_view_edit_page
+    login
+    visit '/admin/edit/1'
+    assert_equal 200, page.status_code
+    assert page.has_css?("input", :count => 2, :visible => "true")
+    assert page.has_button?("Save Front View")
+  end
+
+  def test_admin_can_edit_
     # fill_in('title', with: 'We Are PLAYERs')
     # fill_in('description', with: 'For sure for sure')
     # click_button('submit')
     # assert page.has_content?("We Are PLAYERs")
     # assert page.has_content?('For sure for sure')
   end
-
-
   #As A [User ]
   #When I [fail login]
   #Then i [play pacman]
