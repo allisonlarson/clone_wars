@@ -1,8 +1,8 @@
 - if session[:user] == "player"
   %form{:action => "/admin/update_schedule", :method => "POST"}
-    %input{:placeholder => "Schedule"}
+    %input#schedule-input{:placeholder => "Schedule"}
     %br
-    %input{:type => "submit"}
+    %input{:type => "submit", :value => "Update Schedule"} 
 
 
     %br

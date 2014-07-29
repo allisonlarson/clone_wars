@@ -10,10 +10,6 @@ class AdminUpdatesPage <FeatureTest
     assert page.has_button?("Player Login")
   end
 
-  #As a [User]
-  #When I [Login]
-  #Then i [See an edit page]
-
   def test_a_user_can_log_in
     visit '/login'
     assert_equal 200, page.status_code
@@ -29,10 +25,6 @@ class AdminUpdatesPage <FeatureTest
     fill_in('password', with: 'ad')
     click_button("Player Login")
   end
-
-  #As an [Admin]
-  #When I [Edit Page]
-  #Then I [See updated page]
 
   def test_admin_can_view_update_home
     login
@@ -137,7 +129,7 @@ class AdminUpdatesPage <FeatureTest
     assert page.has_button?("Save Front View")
   end
 
-  def test_admin_can_edit_2
+  def test_admin_can_edit_5
     login
     visit '/admin/edit/5'
     fill_in('title', with: 'We Are PLAYERs')
@@ -149,7 +141,33 @@ class AdminUpdatesPage <FeatureTest
     # assert page.has_content?('For sure for sure')
   end
 
-  #As A [User ]
-  #When I [fail login]
-  #Then i [play pacman]
+  def test_admin_can_view_update_schedule
+    login
+    visit '/admin/update_schedule'
+    assert_equal 200, page.status_code
+    assert has_css?("#schedule-input")
+    assert has_button?("Update Schedule")
+  end
+
+  def test_admin_can_edit_schedule
+    login
+    visit '/admin/update_schedule'
+    fill_in('Schedule', with: '24-7 yo')
+    #setup phony DB
+    #click_button('Update Schedule')
+    #visit '/'
+    #assert page.has_content?('24-7 yo')
+  end
+
+  def test_admin_can_view_update_outfit_of_the_week
+    login
+    visit '/admin/update_outfit_of_the_week'
+    assert_equal 200, page.status_code
+    assert page.has_css?("input", :count => 3, :visible => true)
+    assert page.has_css?("#update-date")
+    assert page.has_css?("#file-upload")
+    assert page.has_button?("Upload Outfit")
+  end
+
+
 end
