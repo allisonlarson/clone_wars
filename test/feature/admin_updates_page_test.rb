@@ -173,11 +173,15 @@ class AdminUpdatesPage <FeatureTest
     login
     visit '/admin/update_outfit_of_the_week'
     fill_in('date', :with => '1999')
-    click_button('#file-upload')
+    page.find("#file-upload").click
+    #uploads file
+    #asserts file has been uploaded and date is '1999'
   end
 
   def test_admin_can_view_blog
-
+    login
+    visit '/admin/update_blog'
+    assert_equal 200, page.status_code
   end
 
   def test_admin_can_edit_blog
