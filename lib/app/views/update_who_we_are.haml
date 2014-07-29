@@ -1,8 +1,8 @@
 - if session[:user] == "player"
   %form{:action => "/admin/update_who_we_are", :method => "POST"}
-    %input{:placeholder => "Title"}
+    %input#update-title{:placeholder => "Title"}
     %br
-    %textarea{:placeholder => "Description"}
+    %textarea#update-description{:placeholder => "Description"}
     %br
     %input{:type => "file"}
     %br
