@@ -6,7 +6,6 @@ gem 'sinatra', require: 'sinatra/base'
 gem 'sinatra-contrib', require: 'sinatra/reloader'
 gem 'pry', require: 'pry'
 gem 'haml', require: 'haml'
-
+gem 'simplecov', require: false, group: :test
 # gem 'sass', require: 'sass'
 # gem 'carrierwave'
-# gem 'simplecov', require: false, group: :test

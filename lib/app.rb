@@ -1,5 +1,7 @@
 require 'Haml'
 require_relative 'models'
+require 'sinatra'
+
 
 class PlayerApp < Sinatra::Base
   set :method_override, true
@@ -70,7 +72,7 @@ class PlayerApp < Sinatra::Base
     if params[:user] == "ad" && params[:password] == "ad"
       session[:user] = "player"
       redirect '/admin/update_dashboard'
-    else
+    elsegit ad
       redirect '/'
     end
   end
