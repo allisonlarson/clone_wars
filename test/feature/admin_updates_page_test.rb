@@ -10,7 +10,7 @@ class AdminUpdatesPage <FeatureTest
     assert page.has_button?("Player Login")
   end
 
-  def test_a_user_can_log_in
+  def test_admin_can_log_in
     visit '/login'
     assert_equal 200, page.status_code
     fill_in('user', with: 'ad')
@@ -184,12 +184,18 @@ class AdminUpdatesPage <FeatureTest
     assert_equal 200, page.status_code
     assert page.has_css?("input", :count => 4, :visible => true)
     assert page.has_css?("#blog-author")
+    assert page.has_css?("#blog-date")
+    assert page.has_css?("#blog-headline")
+    assert page.has_button?("Update Blog")
   end
 
   def test_admin_can_edit_blog
-
+    login
+    visit 'admin/update_blog'
+    #fill in stuff
+    #click submit
+    #verify stuff
+    #clear db
   end
-
-# Blog
 
 end

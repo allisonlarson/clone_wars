@@ -1,12 +1,12 @@
 - if session[:user] == "player"
   %form{:action => "/admin/:id/update_blog", :method => "POST"}
-    %input#blog-author{:placeholder => "Author"}
+    %input#blog-author{name: 'blog-author', :placeholder => "Author"}
     %input#blog-date{:placeholder => "Published Date"}
-    %input#blog-title{:placeholder => "Title"}
+    %input#blog-headline{:placeholder => "Title"}
     %br
     %textarea{:placeholder => "Description"}
     %br
-    %input{:type => "submit"}
+    %input{:type => "submit", :value => "Update Blog"}
 
     %br
     %a{:href => "/admin/update_dashboard"} Temporary shortcut to dashboard
