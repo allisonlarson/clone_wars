@@ -2,17 +2,18 @@ require 'Haml'
 require_relative 'models'
 require 'sinatra'
 
-
 class PlayerApp < Sinatra::Base
   set :method_override, true
   set :root, '/lib/app'
   set :views, File.dirname(__FILE__) + '/app/views'
+  set :session_secret, "tardis"
+
   enable :sessions
   use RackSessionAccess if environment == :test
 
-  configure do
-    enable :sessions
-  end
+  # configure do
+  #   enable :sessions
+  # end
 
   helpers do
     def authenticate!
@@ -74,7 +75,7 @@ class PlayerApp < Sinatra::Base
     if params[:user] == "ad" && params[:password] == "ad"
       session[:user] = "player"
       redirect '/admin/update_dashboard'
-    elsegit ad
+    else
       redirect '/'
     end
   end
@@ -199,6 +200,9 @@ class PlayerApp < Sinatra::Base
     insert_into_tb_regular_view
     results = @database.fetch "SELECT * from people;"
     print results.to_a
+  end
+
+  get 'admin/new_post' do
   end
 
 end

@@ -1,0 +1,16 @@
+<div class="row">
+  <form accept-charset="utf-8" action="<%= route %>" method="<%= action %>">
+    <label for="author">Author:</label>
+    <input id="author" name="blogger[author]" type="text" value="<%= @blogger.title %>">/</input>
+    <label for="title">Title:</label>
+    <input id="title" name="blogger[title]" type="text" value="<%= @blogger.title %>">/</input>
+    <br/>
+    <label for="content">Content:</label>
+    <textarea rows=14 id="content" name="blogger[content]" type="text"><%= @blogger.description %></textarea>
+    <br/>
+    <label for="tag">Tags:</label>
+    <input rows=14 id="tag" name="blogger[tag]" type="text"><%= @blogger.description %></input>
+    <br/>
+    <button type="submit">Publish my post</button>
+  </form>
+</div>
