@@ -1,11 +1,11 @@
 - if session[:user] == "player"
   .weekly_styles
     %form{:action => "/admin/update_outfit_of_the_week", :method => "POST"}
-    %input#update-date{:placeholder => "date"}
+    %input#update-date{:name => 'date', :placeholder => "date"}
     %br
-    %input#file-upload{:type => "file"}
+    %input#file-upload{:value => 'picture', :type => "file"}
     %br
-    %input{:type => "submit", value: "Upload Outfit"}
+    %input#submit-outfit{:type => "submit", value: "Upload Outfit"}
 
     %br
     %a{:href => "/admin/update_dashboard"} Temporary shortcut to dashboard

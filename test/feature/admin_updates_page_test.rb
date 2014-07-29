@@ -169,5 +169,21 @@ class AdminUpdatesPage <FeatureTest
     assert page.has_button?("Upload Outfit")
   end
 
+  def test_admin_can_edit_outfit_of_the_week
+    login
+    visit '/admin/update_outfit_of_the_week'
+    fill_in('date', :with => '1999')
+    click_button('#file-upload')
+  end
+
+  def test_admin_can_view_blog
+
+  end
+
+  def test_admin_can_edit_blog
+
+  end
+
+# Blog
 
 end
