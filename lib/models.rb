@@ -15,5 +15,9 @@ unless DB.table_exists? (:front_view)
   end
 end
 
+# unless DB.table_exists? (:blogger)
+#   DB.create_table :front_view do
+
+
 class FrontView < Sequel::Model(:front_view)
 end
