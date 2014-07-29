@@ -1,12 +1,9 @@
 %form{:action => "/login", :method => "POST"}
-  %input{:name => "user", :type => "text", :placeholder => "username"}
+  %input#admin-username{:name => "user", :type => "text", :placeholder => "username"}
   %br
-  %input{:name => "password", :type => "password", :placeholder => "password"}
+  %input#admin-password{:name => "password", :type => "password", :placeholder => "password"}
   %br
   %input{:value => "Player Login", :type => "submit" }
 
   %br
   %a{:href => "/admin/update_dashboard"} Temporary shortcut to dashboard
-
-
-<form action="/login" method="post"

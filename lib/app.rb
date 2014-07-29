@@ -7,6 +7,8 @@ class PlayerApp < Sinatra::Base
   set :method_override, true
   set :root, '/lib/app'
   set :views, File.dirname(__FILE__) + '/app/views'
+  enable :sessions
+  use RackSessionAccess if environment == :test
 
   configure do
     enable :sessions
