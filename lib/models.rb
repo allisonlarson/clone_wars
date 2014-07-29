@@ -13,11 +13,15 @@ unless DB.table_exists? (:front_view)
     timestamp   :created_at
     timestamp   :updated_at
   end
+
+
+unless DB.table_exists? (:blogger)
+  DB.create_table :front_view do
+    primary_key  :id
+    string       :title
+    string       :author
+    text
+  end
 end
-
-# unless DB.table_exists? (:blogger)
-#   DB.create_table :front_view do
-
-
 class FrontView < Sequel::Model(:front_view)
 end

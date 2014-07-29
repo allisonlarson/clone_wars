@@ -4,3 +4,4 @@ Bundler.require
 
 require 'app'
 run PlayerApp
+  
