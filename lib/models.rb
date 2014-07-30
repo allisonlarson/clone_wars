@@ -42,14 +42,42 @@ Sequel::Model.plugin(:schema)
                           description: FrontViewContent.find_us_description)
 end
 
-unless DB.table_exists? (:schedule)
-  DB.create_table :schedule do
-    primary_key :id
-    string      :schedule
-  end
+class FrontView < Sequel::Model(:front_view)
 end
 
-class FrontView < Sequel::Model(:front_view)
+
+unless DB.table_exists? (:blogger)
+  DB.create_table :blogger do
+    primary_key   :id
+    string        :title
+    string        :author
+    text          :content
+    string        :tag
+    timestamp     :created_at
+    timestamp     :updated_at
+  end
+
+  DB[:blogger].insert( id: 1,
+                          title:       "a title blog",
+                          author:      "an author",
+                          content:     "some content",
+                          tag:         "real tag")
+
+  DB[:blogger].insert( id: 2,
+                          title:       "a title blog2",
+                          author:      "an author2",
+                          content:     "some content2",
+                          tag:         "real tag2")
+end
+
+class Blogger < Sequel::Model(:blogger)
+end
+
+unless DB.table_exists? (:schedule)
+  DB.create_table :schedule do
+    primary_key   :id
+    string        :schedule
+  end
 end
 
 FrontView.create if FrontView[1].nil?

@@ -10,10 +10,12 @@ class PlayerApp < Sinatra::Base
   set :root, 'lib/app'
   set :views, File.dirname(__FILE__) + '/app/views'
   set :images, File.dirname(__FILE__) + '/app/public/images'
+  set :session_secret, "tardis"
   enable :sessions
 
   configure do
     enable :sessions
+    use RackSessionAccess if environment == :test
   end
 
   before do
@@ -61,10 +63,6 @@ class PlayerApp < Sinatra::Base
     haml :front_view
   end
 
-  get '/blog' do
-    haml :blog
-  end
-
   get '/mvp_club' do
     haml :mvp_club
   end
@@ -81,7 +79,7 @@ class PlayerApp < Sinatra::Base
     if params[:user] == "ad" && params[:password] == "ad"
       session[:user] = "player"
       redirect '/admin/update_dashboard'
-    elsegit ad
+    else
       redirect '/'
     end
   end
@@ -103,6 +101,11 @@ class PlayerApp < Sinatra::Base
     haml :update_dashboard
   end
 
+  get '/bloggers' do
+    @bloggers = Blogger.all
+    haml :blogger_main
+  end
+
   post '/create' do
     @front_view = FrontView.new
     @front_view.set_fields(params[:front_view], [:title, :description, :image_file])
@@ -114,16 +117,16 @@ class PlayerApp < Sinatra::Base
     end
   end
 
-  post 'admin/update/:id' do
-    @form_view = FrontView[params[:id].to_i]
-    @front_view.set_fields(params[:front_view], [:title, :description, :image_file])
-    @form_view.updated_at = Time.now.to_s
-    if @form_view.save
-      redirect "/"
-    else
-      redirect "admin/edit/#{@form_view.id}"
-    end
-  end
+  # post 'admin/update/:id' do
+  #   @form_view = FrontView[params[:id].to_i]
+  #   @front_view.set_fields(params[:front_view], [:title, :description, :image_file])
+  #   @form_view.updated_at = Time.now.to_s
+  #   if @form_view.save
+  #     redirect "/"
+  #   else
+  #     redirect "admin/edit/#{@form_view.id}"
+  #   end
+  # end
 
   get '/admin/new_front_view' do
     @front_view = FrontView.new
@@ -133,6 +136,11 @@ class PlayerApp < Sinatra::Base
   get '/admin/edit/:id' do
     @front_view = FrontView[params[:id].to_i]
     haml :edit
+  end
+
+  get '/admin/edit_blog/:id' do
+    @blogger = Blogger[params[:id].to_i]
+    haml :edit_blog
   end
 
   post '/admin/edit/:id' do
@@ -146,6 +154,17 @@ class PlayerApp < Sinatra::Base
     end
   end
 
+  post '/admin/edit_blog/:id' do
+    @blogger = Blogger[params[:id].to_i]
+    @blogger.set_fields(params[:blogger], [:title, :author, :content, :tag])
+    @blogger.created_at = Time.now.to_s
+    if @blogger.save
+      redirect "/admin/update_dashboard"
+    else
+      redirect "/admin/edit_blog/#{@blogger.id}"
+    end
+  end
+
   post '/admin/update/:id' do
     @front_view = FrontView[params[:id].to_i]
     ImageUploader.load(@front_view, params['image'])
@@ -156,6 +175,17 @@ class PlayerApp < Sinatra::Base
       redirect "/admin/update_dashboard"
     else
       redirect "/edit/#{@front_view.id}"
+    end
+  end
+
+  post '/admin/update_blog/:id' do
+    @blogger = Blogger[params[:id].to_i]
+    @blogger.update_fields(params[:blogger], [:title, :author, :content, :tag])
+    @blogger.updated_at = Time.now.to_s
+    if @blogger.save
+      redirect "/admin/update_dashboard"
+    else
+      redirect "/edit_blog/#{@blogger.id}"
     end
   end
 

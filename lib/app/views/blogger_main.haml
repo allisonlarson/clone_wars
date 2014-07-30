@@ -1,0 +1,13 @@
+#blogger.row
+- @bloggers.each do |blogger|
+  %strong= "#{blogger.title}"
+  %p
+    %strong Author:
+    = session[:user]
+  %p
+    %strong Content:
+    = blogger.content
+  - if session[:user] == "player"
+    .actions
+      %a.button{:href => "/admin/edit_blog/#{blogger.id}"} Edit
+      %a.button{:href => "/delete/#{blogger.id}"} Delete
