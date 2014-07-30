@@ -1,12 +1,7 @@
 require 'Haml'
 require 'sinatra'
 require 'pry'
-require_relative 'image_uploader'
-require_relative 'models/schedule'
-require_relative 'models/blogger'
-require_relative 'models/outfits'
-require_relative 'models/frontview'
-
+require_relative 'models'
 
 class PlayerApp < Sinatra::Base
   set :method_override, true
