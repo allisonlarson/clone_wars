@@ -101,7 +101,7 @@ class PlayerApp < Sinatra::Base
     haml :update_dashboard
   end
 
-  get '/bloggers' do
+  get '/blogger' do
     @bloggers = Blogger.all
     haml :blogger_main
   end
