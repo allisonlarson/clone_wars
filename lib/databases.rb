@@ -48,17 +48,3 @@ unless DB.table_exists? (:schedule)
     string      :schedule
   end
 end
-
-class FrontView < Sequel::Model(:front_view)
-end
-
-FrontView.create if FrontView[1].nil?
-FrontView.create if FrontView[2].nil?
-FrontView.create if FrontView[3].nil?
-FrontView.create if FrontView[4].nil?
-FrontView.create if FrontView[5].nil?
-
-class Schedule < Sequel::Model(:schedule)
-end
-
-Schedule.create if Schedule[1].nil?
