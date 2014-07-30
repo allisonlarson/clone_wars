@@ -42,7 +42,7 @@ class AdminUpdatesPage <FeatureTest
     #code that uploads photos here
   end
 
-  def test_admin_can_view_edit_1_page
+  def test_admin_can_view_admin_who_we_are
     login
     visit '/admin/edit/1'
     assert_equal 200, page.status_code
@@ -50,16 +50,17 @@ class AdminUpdatesPage <FeatureTest
     assert page.has_button?("Save Front View")
   end
 
-  def test_admin_can_edit_1
+  def test_admin_can_edit_who_we_are
+    FrontView.create
     login
     visit '/admin/edit/1'
     fill_in('title', with: 'We Are PLAYERs')
     fill_in('description', with: 'For sure for sure')
-    # must setup phony DB
-    # if we dont, it breaks all the things
-    # click_button('submit')
-    # assert page.has_content?("We Are PLAYERs")
-    # assert page.has_content?('For sure for sure')
+    click_on('Save Front View')
+    assert page.has_content?('Wellcome player')
+    visit '/who_we_are'
+    assert page.has_content?("We Are PLAYERs")
+    assert page.has_content?('For sure for sure')
   end
 
   def test_admin_can_view_edit_2_page
@@ -149,12 +150,11 @@ class AdminUpdatesPage <FeatureTest
   end
 
   def test_admin_can_edit_schedule
-    post = FrontView.create
+    FrontView.create
     login
     visit '/admin/update_schedule'
     fill_in('Schedule', with: '24-7 yo')
     click_on('Update Schedule')
-  save_and_open_page
     assert has_content?('Wellcome player'), 'NO WELLCOME'
     assert has_content?('24-7 yo'), 'NO TIME'
     #setup phony DB
