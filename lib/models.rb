@@ -22,7 +22,8 @@ Sequel::Model.plugin(:schema)
 
   DB[:front_view].insert( id: 1,
                          title:       FrontViewContent.who_we_are_title,
-                         description: FrontViewContent.who_we_are_description)
+                         description: FrontViewContent.who_we_are_description,
+                         image_file:  "who_we_are.jpg")
 
   DB[:front_view].insert( id: 2,
                           title:       FrontViewContent.what_we_carry_title,

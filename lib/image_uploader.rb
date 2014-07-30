@@ -4,14 +4,13 @@ class ImageUploader < CarrierWave::Uploader::Base
  storage :file
 
  def store_dir
-   'lib/app/public'
+   'lib/app/public/images'
  end
 
  def self.load(database,image)
-   image_holder = image
    uploader = ImageUploader.new
-   uploader.store!(image_holder)
-   database[:image_file] = image_holder[:filename]
+   uploader.store!(image)
+   database[:image_file] = image[:filename]
  end
 
 end

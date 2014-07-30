@@ -1,5 +1,5 @@
 <div class="row">
-  <form accept-charset="utf-8" action="<%= route %>" method="<%= action %>">
+  <form accept-charset="utf-8" action="<%= route %>" method="<%= action %>", enctype='multipart/form-data'>
     <label for="title">Title:</label>
     <input id="title" name="front_view[title]" type="text" value="<%= @front_view.title %>">/</input>
     <br/>
@@ -7,7 +7,7 @@
     <textarea rows=14 id="description" name="front_view[description]" type="text"><%= @front_view.description %></textarea>
     <br/>
     <label for="image_file">Image File:</label>
-    <input id="image_file" name="front_view[image_file]" type="text" value="<%= @front_view.image_file %>">/</input>
+    <input id="image_file" name="image" type="file" value="<%= @front_view.image_file %>">/</input>
     <br/>
     <button type="submit">Save Front View</button>
   </form>

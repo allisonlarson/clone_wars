@@ -2,6 +2,7 @@ require 'Haml'
 require_relative 'models'
 require 'sinatra'
 require 'pry'
+require_relative 'image_uploader'
 
 
 class PlayerApp < Sinatra::Base
@@ -148,7 +149,8 @@ class PlayerApp < Sinatra::Base
   post '/admin/update/:id' do
     @front_view = FrontView[params[:id].to_i]
     ImageUploader.load(@front_view, params['image'])
-    @front_view.update_fields(params[:front_view], [:title, :description, :image_file])
+    binding.pry
+    @front_view.update_fields(params[:front_view], [:title, :description])
     @front_view.updated_at = Time.now.to_s
     if @front_view.save
       redirect "/admin/update_dashboard"
