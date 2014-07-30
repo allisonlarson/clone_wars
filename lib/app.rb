@@ -6,7 +6,7 @@ require 'pry'
 
 class PlayerApp < Sinatra::Base
   set :method_override, true
-  set :root, '/lib/app'
+  set :root, 'lib/app'
   set :views, File.dirname(__FILE__) + '/app/views'
   enable :sessions
   # use RackSessionAccess unless environment == :test
@@ -33,7 +33,7 @@ class PlayerApp < Sinatra::Base
 
   get '/who_we_are' do
     @front_view = FrontView[1]
-    haml :front_view
+    haml :who_we_are
   end
 
   get '/what_we_carry' do

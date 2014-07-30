@@ -3,20 +3,21 @@ require 'sequel'
 require_relative './front_view_content'
 
 Sequel::Model.plugin(:schema)
-if ENV['RACK_ENV'] == 'test'
-  DB = Sequel.sqlite('database_test.db')
-else
-  DB = Sequel.sqlite('database.db')
-end
 
-unless DB.table_exists? (:front_view)
-  DB.create_table :front_view do
-    primary_key :id
-    string      :title       #:null => false
-    text        :description #:null => false
-    string      :image_file
-    timestamp   :created_at
-    timestamp   :updated_at
+  if ENV['RACK_ENV'] == 'test'
+    DB = Sequel.sqlite('database_test.db')
+  else
+    DB = Sequel.sqlite('database.db')
+  end
+
+  unless DB.table_exists? (:front_view)
+    DB.create_table :front_view do
+      primary_key :id
+      string      :title
+      text        :description
+      string      :image_file
+      timestamp   :created_at
+      timestamp   :updated_at
   end
 
   DB[:front_view].insert( id: 1,
@@ -50,7 +51,6 @@ end
 class FrontView < Sequel::Model(:front_view)
 end
 
-# Seed the database.
 FrontView.create if FrontView[1].nil?
 FrontView.create if FrontView[2].nil?
 FrontView.create if FrontView[3].nil?
