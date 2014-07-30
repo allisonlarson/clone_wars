@@ -1,4 +1,4 @@
-require_relative './feature_test_helper'
+require_relative 'feature_test_helper'
 
 class NonAdminAccess <FeatureTest
 
@@ -15,7 +15,10 @@ class NonAdminAccess <FeatureTest
   end
 
   def cannot_access_admin_who_we_are
-   
+    visit '/admin/update_who_we_are'
+    assert_equal 200, page.status_code
+    assert page.has_css?("#game")
   end
 
+  #add tests for rest of pages
 end

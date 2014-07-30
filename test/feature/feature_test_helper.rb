@@ -1,17 +1,22 @@
 require_relative '../test_helper'
 require 'capybara'
+require 'capybara-webkit'
 require 'sinatra'
-require "rack_session_access/capybara"
 
-
-Capybara.app = PlayerApp
+Capybara.javascript_driver = :webkit
+Capybara.app = PlayerApp.new
 
 class FeatureTest < Minitest::Test
   include Capybara::DSL
 
+  def setup
+    DatabaseCleaner.start
+  end
+
   def teardown
     Capybara.reset_sessions!
     Capybara.use_default_driver
+    DatabaseCleaner.clean
   end
 
 end

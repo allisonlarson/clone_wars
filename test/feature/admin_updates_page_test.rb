@@ -144,15 +144,19 @@ class AdminUpdatesPage <FeatureTest
   def test_admin_can_view_update_schedule
     login
     visit '/admin/update_schedule'
-    assert_equal 200, page.status_code
     assert has_css?("#schedule-input")
     assert has_button?("Update Schedule")
   end
 
   def test_admin_can_edit_schedule
+    post = FrontView.create
     login
     visit '/admin/update_schedule'
     fill_in('Schedule', with: '24-7 yo')
+    click_on('Update Schedule')
+  save_and_open_page
+    assert has_content?('Wellcome player'), 'NO WELLCOME'
+    assert has_content?('24-7 yo'), 'NO TIME'
     #setup phony DB
     #click_button('Update Schedule')
     #visit '/'

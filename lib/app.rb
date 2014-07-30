@@ -1,6 +1,7 @@
 require 'Haml'
 require_relative 'models'
 require 'sinatra'
+require 'pry'
 
 
 class PlayerApp < Sinatra::Base
@@ -8,10 +9,14 @@ class PlayerApp < Sinatra::Base
   set :root, '/lib/app'
   set :views, File.dirname(__FILE__) + '/app/views'
   enable :sessions
-  use RackSessionAccess if environment == :test
+  # use RackSessionAccess unless environment == :test
 
   configure do
     enable :sessions
+  end
+
+  before do
+    @front_view = FrontView.last
   end
 
   helpers do
@@ -21,6 +26,9 @@ class PlayerApp < Sinatra::Base
       end
     end
   end
+
+  # before every action, set @front_view
+  # before_filter
 
   not_found do
     haml :error
@@ -91,7 +99,8 @@ class PlayerApp < Sinatra::Base
 
   get '/admin/update_dashboard' do
     authenticate!
-    @front_views = FrontView.all
+    front_views = FrontView.all
+    front_view  = FrontView.last
     haml :update_dashboard
   end
 
@@ -193,6 +202,17 @@ class PlayerApp < Sinatra::Base
   get '/admin/update_schedule' do
     authenticate!
     haml :update_schedule
+  end
+
+  post '/admin/update_schedule' do
+    @front_view = FrontView.last
+    @front_view.schedule = params['front_view']['schedule']
+    @front_view.created_at = Time.now.to_s
+    if @front_view.save
+      redirect "/admin/update_dashboard"
+    else
+      redirect "/admin/edit/"
+    end
   end
 
   get '/db' do
