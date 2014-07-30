@@ -58,7 +58,7 @@ class PlayerApp < Sinatra::Base
 
   get '/find_us' do
     @front_view = FrontView[5]
-    haml :front_view
+    haml :find_us
   end
 
   get '/blog' do
@@ -149,7 +149,6 @@ class PlayerApp < Sinatra::Base
   post '/admin/update/:id' do
     @front_view = FrontView[params[:id].to_i]
     ImageUploader.load(@front_view, params['image'])
-    binding.pry
     @front_view.update_fields(params[:front_view], [:title, :description])
     @front_view.updated_at = Time.now.to_s
     if @front_view.save
