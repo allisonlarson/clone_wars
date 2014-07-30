@@ -49,16 +49,10 @@ unless DB.table_exists? (:schedule)
   end
 end
 
-class FrontView < Sequel::Model(:front_view)
+unless DB.table_exists? (:outfits)
+  DB.create_table :outfits do
+    primart_key :id
+    string      :image
+    string      :date
+  end
 end
-
-FrontView.create if FrontView[1].nil?
-FrontView.create if FrontView[2].nil?
-FrontView.create if FrontView[3].nil?
-FrontView.create if FrontView[4].nil?
-FrontView.create if FrontView[5].nil?
-
-class Schedule < Sequel::Model(:schedule)
-end
-
-Schedule.create if Schedule[1].nil?

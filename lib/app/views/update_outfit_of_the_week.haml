@@ -1,9 +1,9 @@
 - if session[:user] == "player"
   .weekly_styles
     %form{:action => "/admin/update_outfit_of_the_week", :method => "POST"}
-    %input#update-date{:name => 'date', :placeholder => "date"}
+    %input#update-date{:name => 'outfits[date]', :type => 'text' :placeholder => "date"}
     %br
-    %input#file-upload{:type => "file"}
+    %input#file-upload{:name => 'image':type => "file"}
     %br
     %input#submit-outfit{:type => "submit", value: "Upload Outfit"}
 
