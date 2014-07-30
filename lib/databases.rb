@@ -27,19 +27,23 @@ Sequel::Model.plugin(:schema)
 
   DB[:front_view].insert( id: 2,
                           title:       FrontViewContent.what_we_carry_title,
-                          description: FrontViewContent.what_we_carry_description)
+                          description: FrontViewContent.what_we_carry_description,
+                          image_file:  "what_we_carry.jpg")
 
   DB[:front_view].insert( id: 3,
                           title:       FrontViewContent.what_we_do_title,
-                          description: FrontViewContent.what_we_do_description)
+                          description: FrontViewContent.what_we_do_description,
+                          image_file:  "what_we_do.jpg")
 
   DB[:front_view].insert( id: 4,
                           title:       FrontViewContent.gift_cards_title,
-                          description: FrontViewContent.gift_cards_description)
+                          description: FrontViewContent.gift_cards_description,
+                          image_file:  "gift_cards.jpg")
 
   DB[:front_view].insert( id: 5,
                           title:       FrontViewContent.find_us_title,
-                          description: FrontViewContent.find_us_description)
+                          description: FrontViewContent.find_us_description,
+                          image_file:  "find_us.jpg")
 end
 
 unless DB.table_exists? (:schedule)

@@ -6,13 +6,14 @@ require_relative 'models/schedule'
 require_relative 'models/blogger'
 require_relative 'models/outfits'
 require_relative 'models/frontview'
+require_relative 'models/home'
 
 
 class PlayerApp < Sinatra::Base
   set :method_override, true
   set :root, 'lib/app'
   set :views, File.dirname(__FILE__) + '/app/views'
-  set :images, File.dirname(__FILE__) + '/app/public/images'
+  # set :images, File.dirname(__FILE__) + '/app/public/images'
   enable :sessions
 
   configure do
@@ -21,6 +22,7 @@ class PlayerApp < Sinatra::Base
 
   before do
     @schedule = Schedule.first
+    @home     = Home.first
   end
 
   helpers do
@@ -167,12 +169,10 @@ class PlayerApp < Sinatra::Base
   end
 
   post '/admin/update_home' do
-    @front_view = FrontView[params[:id].to_i]
-    ImageUploader.load(@front_view, params['image'])
-    if @front_view.save
+    @home = Home.first
+    ImageUploader.load(@home, params['image'])
+    if @home.save
       redirect "/admin/update_dashboard"
-    else
-      redirect "/edit/#{@front_view.id}"
     end
   end
 

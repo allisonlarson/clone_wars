@@ -9,9 +9,11 @@ class ImageUploader < CarrierWave::Uploader::Base
 
  def self.load(database,image)
    uploader = ImageUploader.new
-   uploader.store!(image)
-   binding.pry
-   database[:image_file] = image[:filename]
+   if image != nil
+     uploader.store!(image)
+     binding.pry
+     database[:image_file] = image[:filename]
+   end
  end
 
 end
