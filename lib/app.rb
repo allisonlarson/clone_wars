@@ -8,8 +8,8 @@ class PlayerApp < Sinatra::Base
   set :method_override, true
   set :root, 'lib/app'
   set :views, File.dirname(__FILE__) + '/app/views'
+  set :images, File.dirname(__FILE__) + '/app/public/images'
   enable :sessions
-  # use RackSessionAccess unless environment == :test
 
   configure do
     enable :sessions
@@ -38,12 +38,12 @@ class PlayerApp < Sinatra::Base
 
   get '/what_we_carry' do
     @front_view = FrontView[2]
-    haml :front_view
+    haml :what_we_carry
   end
 
   get '/what_we_do' do
     @front_view = FrontView[3]
-    haml :front_view
+    haml :what_we_do
   end
 
   get '/outfit_of_the_week' do
@@ -52,7 +52,7 @@ class PlayerApp < Sinatra::Base
 
   get '/gift_cards' do
     @front_view = FrontView[4]
-    haml :front_view
+    haml :gift_cards
   end
 
   get '/find_us' do
@@ -147,6 +147,7 @@ class PlayerApp < Sinatra::Base
 
   post '/admin/update/:id' do
     @front_view = FrontView[params[:id].to_i]
+    ImageUploader.load(@front_view, params['image'])
     @front_view.update_fields(params[:front_view], [:title, :description, :image_file])
     @front_view.updated_at = Time.now.to_s
     if @front_view.save

@@ -1,3 +1,6 @@
+.aha_background { background: url(images/backg-viewport.gif) }
+
+
 .catablog-row {min-height:210px; height:auto !important; height:210px;}
 .catablog-image {width:150px;} .catablog-title {margin:0 0 0 160px !important;}
 .catablog-description {margin:0 0 0 160px; !important}
@@ -753,8 +756,15 @@ ul.children {width: 22em !important} /* ADDED */
 	padding: 23px 23px;
 	width: 656px; /* actual 702px */
 	height: 452px; /*actual 498px */
-	float: right;
-  background: url(backg-content-image.png) no-repeat;
+	float: left;
+  background: url(images/backg-content-image.png) no-repeat;
+}
+
+#aha_red_text {
+  color: red
+	padding: 12px 4px 0 0;
+	max-width: 270px;
+	float: left;
 }
 
 .home #rightLayout {
