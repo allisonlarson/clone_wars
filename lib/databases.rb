@@ -48,3 +48,11 @@ unless DB.table_exists? (:schedule)
     string      :schedule
   end
 end
+
+unless DB.table_exists? (:outfits)
+  DB.create_table :outfits do
+    primart_key :id
+    string      :image
+    string      :date
+  end
+end

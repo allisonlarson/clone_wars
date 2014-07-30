@@ -1,3 +1,5 @@
+require_relative '../databases'
+
 class Schedule < Sequel::Model(:schedule)
 end
 
