@@ -51,7 +51,6 @@ class AdminUpdatesPage <FeatureTest
   end
 
   def test_admin_can_edit_who_we_are
-    FrontView.create
     login
     visit '/admin/edit/1'
     fill_in('title', with: 'We Are PLAYERs')
@@ -63,7 +62,7 @@ class AdminUpdatesPage <FeatureTest
     assert page.has_content?('For sure for sure')
   end
 
-  def test_admin_can_view_edit_2_page
+  def test_admin_can_view_edit_what_we_carry
     login
     visit '/admin/edit/2'
     assert_equal 200, page.status_code
@@ -71,58 +70,48 @@ class AdminUpdatesPage <FeatureTest
     assert page.has_button?("Save Front View")
   end
 
-  def test_admin_can_edit_2
+  def test_admin_can_edit_what_we_carry
     login
     visit '/admin/edit/2'
-    fill_in('title', with: 'We Are PLAYERs')
-    fill_in('description', with: 'For sure for sure')
-    # must setup phony DB
-    # if we dont, it breaks all the things
-    # click_button('submit')
-    # assert page.has_content?("We Are PLAYERs")
-    # assert page.has_content?('For sure for sure')
+    fill_in('title', with: 'THIS IS')
+    fill_in('description', with: 'WHAT WE CARRY')
+    click_on('Save Front View')
+    visit '/what_we_carry'
+    assert page.has_content?("THIS IS")
+    assert page.has_content?('WHAT WE CARRY')
   end
 
-  def test_admin_can_view_edit_3_page
+  def test_admin_can_edit_what_we_do
     login
     visit '/admin/edit/3'
-    assert_equal 200, page.status_code
-    assert page.has_css?("input", :count => 2, :visible => "true")
-    assert page.has_button?("Save Front View")
+    fill_in('title', with: 'WE DO')
+    fill_in('description', with: 'STUFF')
+    click_on('Save Front View')
+    visit '/what_we_do'
+    assert page.has_content?('WE DO')
+    assert page.has_content?('STUFF')
   end
 
-  def test_admin_can_edit_3
-    login
-    visit '/admin/edit/3'
-    fill_in('title', with: 'We Are PLAYERs')
-    fill_in('description', with: 'For sure for sure')
-    # must setup phony DB
-    # if we dont, it breaks all the things
-    # click_button('submit')
-    # assert page.has_content?("We Are PLAYERs")
-    # assert page.has_content?('For sure for sure')
-  end
-
-  def test_admin_can_view_edit_4_page
+  def test_admin_can_view_gift_cards
     login
     visit '/admin/edit/4'
     assert_equal 200, page.status_code
     assert page.has_css?("input", :count => 2, :visible => "true")
     assert page.has_button?("Save Front View")
   end
-    def test_admin_can_edit_4
+
+  def test_admin_can_edit_gift_cards
     login
     visit '/admin/edit/4'
-    fill_in('title', with: 'We Are PLAYERs')
-    fill_in('description', with: 'For sure for sure')
-    # must setup phony DB
-    # if we dont, it breaks all the things
-    # click_button('submit')
-    # assert page.has_content?("We Are PLAYERs")
-    # assert page.has_content?('For sure for sure')
+    fill_in('title', with: 'BUY THEM')
+    fill_in('description', with: 'THEY ARE GIFT CARDS')
+    click_on('Save Front View')
+    visit '/gift_cards'
+    assert page.has_content?("BUY THEM")
+    assert page.has_content?('THEY ARE GIFT CARDS')
   end
 
-  def test_admin_can_view_edit_5_page
+  def test_admin_can_view_edit_find_us
     login
     visit '/admin/edit/5'
     assert_equal 200, page.status_code
@@ -130,16 +119,15 @@ class AdminUpdatesPage <FeatureTest
     assert page.has_button?("Save Front View")
   end
 
-  def test_admin_can_edit_5
+  def test_admin_can_edit_find_us
     login
     visit '/admin/edit/5'
-    fill_in('title', with: 'We Are PLAYERs')
-    fill_in('description', with: 'For sure for sure')
-    # must setup phony DB
-    # if we dont, it breaks all the things
-    # click_button('submit')
-    # assert page.has_content?("We Are PLAYERs")
-    # assert page.has_content?('For sure for sure')
+    fill_in('title', with: 'THIS IS')
+    fill_in('description', with: 'WHERE WE AT')
+    click_on('Save Front View')
+    visit '/find_us'
+    assert page.has_content?("THIS IS")
+    assert page.has_content?('WHERE WE AT')
   end
 
   def test_admin_can_view_update_schedule
@@ -150,17 +138,12 @@ class AdminUpdatesPage <FeatureTest
   end
 
   def test_admin_can_edit_schedule
-    FrontView.create
     login
     visit '/admin/update_schedule'
     fill_in('Schedule', with: '24-7 yo')
     click_on('Update Schedule')
     assert has_content?('Wellcome player'), 'NO WELLCOME'
     assert has_content?('24-7 yo'), 'NO TIME'
-    #setup phony DB
-    #click_button('Update Schedule')
-    #visit '/'
-    #assert page.has_content?('24-7 yo')
   end
 
   def test_admin_can_view_update_outfit_of_the_week

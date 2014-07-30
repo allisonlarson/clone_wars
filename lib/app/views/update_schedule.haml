@@ -1,6 +1,6 @@
 - if session[:user] == "player"
   %form{:action => "/admin/update_schedule", :method => "POST"}
-    %input#schedule-input{:name => 'front_view[schedule]', :placeholder => "Schedule"}
+    %input#schedule-input{:name => 'schedule[schedule]', :placeholder => "Schedule"}
     %br
     %input{:type => "submit", :value => "Update Schedule"}
 

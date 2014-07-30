@@ -16,7 +16,7 @@ class PlayerApp < Sinatra::Base
   end
 
   before do
-    @front_view = FrontView.last
+    @schedule = Schedule.first
   end
 
   helpers do
@@ -27,27 +27,23 @@ class PlayerApp < Sinatra::Base
     end
   end
 
-  # before every action, set @front_view
-  # before_filter
-
-  not_found do
-    haml :error
-  end
-
   get '/' do
     haml :index
   end
 
   get '/who_we_are' do
-    haml :who_we_are
+    @front_view = FrontView[1]
+    haml :front_view
   end
 
   get '/what_we_carry' do
-    haml :what_we_carry
+    @front_view = FrontView[2]
+    haml :front_view
   end
 
   get '/what_we_do' do
-    haml :what_we_do
+    @front_view = FrontView[3]
+    haml :front_view
   end
 
   get '/outfit_of_the_week' do
@@ -55,11 +51,13 @@ class PlayerApp < Sinatra::Base
   end
 
   get '/gift_cards' do
-    haml :gift_cards
+    @front_view = FrontView[4]
+    haml :front_view
   end
 
   get '/find_us' do
-    haml :find_us
+    @front_view = FrontView[5]
+    haml :front_view
   end
 
   get '/blog' do
@@ -205,10 +203,9 @@ class PlayerApp < Sinatra::Base
   end
 
   post '/admin/update_schedule' do
-    @front_view = FrontView.last
-    @front_view.schedule = params['front_view']['schedule']
-    @front_view.created_at = Time.now.to_s
-    if @front_view.save
+    @schedule = Schedule.first
+    @schedule.schedule = params['schedule']['schedule']
+    if @schedule.save
       redirect "/admin/update_dashboard"
     else
       redirect "/admin/edit/"
