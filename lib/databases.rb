@@ -51,8 +51,18 @@ end
 
 unless DB.table_exists? (:outfits)
   DB.create_table :outfits do
-    primart_key :id
+    primary_key :id
     string      :image
     string      :date
   end
+end
+
+unless DB.table_exists? (:home)
+  DB.create_table :home do
+    primary_key :id
+    string      :image_file
+  end
+
+  DB[:home].insert( id:1,
+                    image_file: "home.png")
 end
