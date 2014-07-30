@@ -3,6 +3,7 @@ require 'capybara'
 require 'capybara-webkit'
 require 'sinatra'
 
+
 Capybara.javascript_driver = :webkit
 Capybara.app = PlayerApp.new
 
