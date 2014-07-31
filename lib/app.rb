@@ -6,6 +6,7 @@ require_relative 'models/blogger'
 require_relative 'models/outfits'
 require_relative 'models/frontview'
 require_relative 'models/home'
+require_relative 'mailer'
 
 
 class PlayerApp < Sinatra::Base
@@ -24,7 +25,6 @@ class PlayerApp < Sinatra::Base
   before do
     @schedule = Schedule.first
     @home     = Home.first
-    @outfits  = Outfits.all
     @blogger  = Blogger.all
   end
 
@@ -75,6 +75,24 @@ class PlayerApp < Sinatra::Base
     haml :mvp_club
   end
 
+  get '/blogger' do
+    haml :blogger_main
+  end
+
+  get '/contact' do
+    haml :contact
+  end
+
+  post '/contact' do
+    contact = Mailer.new
+    contact.mailer(params)
+    redirect '/success'
+  end
+
+  get '/success' do
+    haml :success
+  end
+
   get '/login' do
     if session[:user] == "player"
       redirect "/admin/update_dashboard"
@@ -104,44 +122,7 @@ class PlayerApp < Sinatra::Base
 
   get '/admin/update_dashboard' do
     authenticate!
-    front_views = FrontView.all
-    front_view  = FrontView.last
     haml :update_dashboard
-  end
-
-  get '/blogger' do
-    @bloggers = Blogger.all
-    haml :blogger_main
-  end
-
-  get '/contact' do
-    haml :contact
-  end
-
-  post '/contact' do
-    Pony.mail(
-      :from => params[:name] + "<" + params[:email] + ">",
-      :to => 'allieisclever@gmail.com',
-      :subject => params[:name] + " has contacted you about Players Clothing",
-      :body => params[:message],
-      :attachments => {params[:image][:filename] => File.read(params[:image][:tempfile])
-      })
-    redirect '/success'
-  end
-
-  get '/success' do
-    haml :success
-  end
-
-  post '/create' do
-    @front_view = FrontView.new
-    @front_view.set_fields(params[:front_view], [:title, :description, :image_file])
-    @front_view.created_at = Time.now.to_s
-    if @front_view.save
-      redirect "/admin/update_dashboard"
-    else
-      redirect "/admin/new_front_view"
-    end
   end
 
   post '/create_post' do
@@ -155,11 +136,6 @@ class PlayerApp < Sinatra::Base
     end
   end
 
-  get '/admin/new_front_view' do
-    @front_view = FrontView.new
-    haml :new_front_view
-  end
-
   get '/admin/new_blogpost' do
     @blogger = Blogger.new
     haml :new_blogpost
@@ -168,33 +144,6 @@ class PlayerApp < Sinatra::Base
   get '/admin/edit/:id' do
     @front_view = FrontView[params[:id].to_i]
     haml :edit
-  end
-
-  get '/admin/edit_blog/:id' do
-    @blogger = Blogger[params[:id].to_i]
-    haml :edit_blog
-  end
-
-  post '/admin/edit/:id' do
-    @front_view = FrontView[params[:id].to_i]
-    @front_view.set_fields(params[:front_view], [:title, :description, :image_file])
-    @front_view.created_at = Time.now.to_s
-    if @front_view.save
-      redirect "/admin/update_dashboard"
-    else
-      redirect "/admin/edit/#{@front_view.id}"
-    end
-  end
-
-  post '/admin/edit_blog/:id' do
-    @blogger = Blogger[params[:id].to_i]
-    @blogger.set_fields(params[:blogger], [:title, :author, :content])
-    @blogger.created_at = Time.now.to_s
-    if @blogger.save
-      redirect "/admin/update_dashboard"
-    else
-      redirect "/admin/edit_blog/#{@blogger.id}"
-    end
   end
 
   post '/admin/update/:id' do
@@ -209,6 +158,22 @@ class PlayerApp < Sinatra::Base
     end
   end
 
+  get '/admin/edit_blog/:id' do
+    @blogger = Blogger[params[:id].to_i]
+    haml :edit_blog
+  end
+
+  post '/admin/edit_blog/:id' do
+    @blogger = Blogger[params[:id].to_i]
+    @blogger.set_fields(params[:blogger], [:title, :author, :content])
+    @blogger.created_at = Time.now.to_s
+    if @blogger.save
+      redirect "/admin/update_dashboard"
+    else
+      redirect "/admin/edit_blog/#{@blogger.id}"
+    end
+  end
+
   post '/admin/update_blog/:id' do
     @blogger = Blogger[params[:id].to_i]
     @blogger.update_fields(params[:blogger], [:title, :author, :content])
@@ -218,6 +183,11 @@ class PlayerApp < Sinatra::Base
     else
       redirect "/edit_blog/#{@blogger.id}"
     end
+  end
+
+  get '/admin/update_blog' do
+    authenticate!
+    haml :update_blog
   end
 
   get '/admin/update_home' do
@@ -247,11 +217,6 @@ class PlayerApp < Sinatra::Base
     end
   end
 
-  get '/admin/update_blog' do
-    authenticate!
-    haml :update_blog
-  end
-
   get '/admin/update_schedule' do
     authenticate!
     haml :update_schedule
@@ -265,12 +230,6 @@ class PlayerApp < Sinatra::Base
     else
       redirect "/admin/edit/"
     end
-  end
-
-  get '/db' do
-    insert_into_tb_regular_view
-    results = @database.fetch "SELECT * from people;"
-    print results.to_a
   end
 
 end
