@@ -9,6 +9,10 @@
   line-height: 20px;
 }
 
+#aha_demo_orange {
+  color: orange
+}
+
 
 .catablog-row {min-height:210px; height:auto !important; height:210px;}
 .catablog-image {width:150px;} .catablog-title {margin:0 0 0 160px !important;}
