@@ -1,0 +1,11 @@
+%p Please fill in the following form if you would like to contact us.
+%form{action: "/contact", method: "post", enctype: "multipart/form-data"}
+  %label{for: "name"} Your Name:
+  %input{name: "name", type: "text"}/
+  %label{for: "email"} Your email address:
+  %input{name: "email", type: "text"}/
+  %label{for: "image"} Image Attachment:
+  %input{name: "image", type: "file"}/
+  %label{for: "message"} Your message:
+  %textarea{cols: "28", name: "message", rows: "16"}
+  %input{type: 'submit', value: 'Send!'}/

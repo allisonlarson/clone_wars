@@ -110,6 +110,26 @@ class PlayerApp < Sinatra::Base
     haml :update_dashboard
   end
 
+  get '/contact' do
+    haml :contact
+  end
+
+  post '/contact' do
+    binding.pry
+    Pony.mail(
+      :from => params[:name] + "<" + params[:email] + ">",
+      :to => 'allieisclever@gmail.com',
+      :subject => params[:name] + " has contacted you about Players Clothing",
+      :body => params[:message],
+      :attachments => {params[:image][:filename] => File.read(params[:image][:tempfile])
+      })
+    redirect '/success'
+  end
+
+  get '/success' do
+    haml :success
+  end
+
   post '/create' do
     @front_view = FrontView.new
     @front_view.set_fields(params[:front_view], [:title, :description, :image_file])
