@@ -1,6 +1,6 @@
 require_relative 'feature_test_helper'
 
-class NonAdminAccess <FeatureTest
+class SecurityTest <FeatureTest
 
   def test_cannot_access_admin_home
     visit '/admin/update_home'
@@ -25,5 +25,5 @@ class NonAdminAccess <FeatureTest
     assert_equal 200, page.status_code
     assert page.has_css?("#game")
   end
-  
+
 end

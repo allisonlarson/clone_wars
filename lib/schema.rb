@@ -12,13 +12,13 @@ def self.unless_test(&block)
   end
 end
 
-if ENV['RACK_ENV'] == 'test'
-  DB = Sequel.sqlite('database_test.db')
-else
-  DB = Sequel.sqlite('database.db')
-end
+  if ENV['RACK_ENV'] == 'test'
+    DB = Sequel.sqlite('database_test.db')
+  else
+    DB = Sequel.sqlite('database.db')
+  end
 
-unless DB.table_exists? (:front_view)
+  unless DB.table_exists? (:front_view)
     DB.create_table :front_view do
       primary_key :id
       string      :title

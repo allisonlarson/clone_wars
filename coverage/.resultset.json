@@ -6,7 +6,38 @@
   },
   "Unit Tests": {
     "coverage": {
+      "/Users/Persistence/Copy/Projects/ruby-projects/clone_wars/test/feature/non_admin_access_test.rb": [
+        1,
+        null,
+        1,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null
+      ]
     },
-    "timestamp": 1406815851
+    "timestamp": 1406816910
   }
 }
