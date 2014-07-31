@@ -97,7 +97,8 @@ class FrontViewContent
    Players Clothing Gift Cards are the perfect gift for any occasion.
    • Gift Cards spend like cash and may be used on any item in our store.
    • Gift Cards have no expiration date.
-   • Gift Cards can range in value from $50 to $5000, but are not redeemable for cash.
+   • Gift Cards can range in value from $50 to $5000, but are not redeemable for
+    cash.
    • Call us at 303-752-9377 to get yours today!"
  end
 
@@ -178,7 +179,9 @@ class FrontViewContent
  end
 
  def self.mvp_description
-   "Join the Players M.V.P. Club and receive “e-only” offers, priority notice of special events like our trunk shows and store-wide promotions. Also, keep up to date on the latest styles and new products that arrive into our store.
+   "Join the Players M.V.P. Club and receive “e-only” offers, priority notice of
+    special events like our trunk shows and store-wide promotions. Also, keep up
+     to date on the latest styles and new products that arrive into our store.
 
     New members receive a
     $25 Savings Certificate

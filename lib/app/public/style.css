@@ -66,7 +66,8 @@ Thematic is Â© Ian Stewart http://themeshaper.com/
 @import url('../thematic/library/styles/images.css');
 
 /* Apply default theme styles and colors */
-/* It's better to actually copy over default.css into this file (or link to a copy in your child theme) if you're going to do anything outrageous */
+/* It's better to actually copy over default.css into this file (or link to a
+copy in your child theme) if you're going to do anything outrageous */
 /* @import url('../thematic/library/styles/default.css'); */
 @import url('styles/default.css');
 
@@ -465,7 +466,8 @@ a:active, a:hover, #branding a:active, #branding a:hover {
 
 #header {
 	margin: 0 30px 5px 30px; /* ADDED */
-	z-index:101; /* Originally 2.  Increased to above 99 (highest z-index in nivo-slider css) so drop-down navigation is on top of nivo-slider */
+	z-index:101; /* Originally 2.  Increased to above 99 (highest z-index in
+    nivo-slider css) so drop-down navigation is on top of nivo-slider */
 }
 #header p { /* ADDED */
 	margin-bottom: 0;
@@ -497,7 +499,8 @@ a:active, a:hover, #branding a:active, #branding a:hover {
 	text-align: right;
 }
 
-/* ADDED for original design. Join on top right side of header above the logo. Logo left justified .
+/* ADDED for original design. Join on top right side of header above the logo.
+ Logo left justified .
 	 Needed in function childtheme_override_brandingopen()
 #joinLayout {
 	width: 686px;

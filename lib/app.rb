@@ -8,7 +8,6 @@ require_relative 'models/frontview'
 require_relative 'models/home'
 require_relative 'mailer'
 
-
 class PlayerApp < Sinatra::Base
   set    :method_override, true
   set    :root, 'lib/app'
@@ -25,7 +24,7 @@ class PlayerApp < Sinatra::Base
   before do
     @schedule = Schedule.first
     @home     = Home.first
-    @blogger  = Blogger.all
+    @bloggers = Blogger.all
   end
 
   helpers do
@@ -131,8 +130,6 @@ class PlayerApp < Sinatra::Base
     @blogger.created_at = Time.now.to_s
     if @blogger.save
       redirect "/blogger"
-    else
-      redirect "/admin/new_blogpost"
     end
   end
 
@@ -150,11 +147,8 @@ class PlayerApp < Sinatra::Base
     @front_view = FrontView[params[:id].to_i]
     ImageUploader.load(@front_view, params['image'])
     @front_view.update_fields(params[:front_view], [:title, :description])
-    @front_view.updated_at = Time.now.to_s
     if @front_view.save
       redirect "/admin/update_dashboard"
-    else
-      redirect "/edit/#{@front_view.id}"
     end
   end
 
@@ -163,31 +157,13 @@ class PlayerApp < Sinatra::Base
     haml :edit_blog
   end
 
-  post '/admin/edit_blog/:id' do
-    @blogger = Blogger[params[:id].to_i]
-    @blogger.set_fields(params[:blogger], [:title, :author, :content])
-    @blogger.created_at = Time.now.to_s
-    if @blogger.save
-      redirect "/admin/update_dashboard"
-    else
-      redirect "/admin/edit_blog/#{@blogger.id}"
-    end
-  end
-
   post '/admin/update_blog/:id' do
     @blogger = Blogger[params[:id].to_i]
     @blogger.update_fields(params[:blogger], [:title, :author, :content])
     @blogger.updated_at = Time.now.to_s
     if @blogger.save
       redirect "/blogger"
-    else
-      redirect "/edit_blog/#{@blogger.id}"
     end
-  end
-
-  get '/admin/update_blog' do
-    authenticate!
-    haml :update_blog
   end
 
   get '/admin/update_home' do
@@ -227,9 +203,6 @@ class PlayerApp < Sinatra::Base
     @schedule.schedule = params['schedule']['schedule']
     if @schedule.save
       redirect "/admin/update_dashboard"
-    else
-      redirect "/admin/edit/"
     end
   end
-
 end
