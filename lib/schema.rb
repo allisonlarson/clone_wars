@@ -52,6 +52,29 @@ Sequel::Model.plugin(:schema)
 
 end
 
+unless DB.table_exists? (:blogger)
+  DB.create_table :blogger do
+    primary_key  :id
+    string       :title
+    string       :author
+    text         :content
+    timestamp    :created_at
+    timestamp    :updated_at
+  end
+
+  DB[:blogger].insert( id: 1,
+                          title:      FrontViewContent.blog_title_1,
+                          author:     FrontViewContent.blog_author_1,
+                          content:    FrontViewContent.blog_content_1,
+                          created_at: Time.now.to_s)
+
+  DB[:blogger].insert( id: 2,
+                          title:      FrontViewContent.blog_title_2,
+                          author:     FrontViewContent.blog_author_2,
+                          content:    FrontViewContent.blog_content_2,
+                          created_at: Time.now.to_s)
+end
+
 unless DB.table_exists? (:schedule)
   DB.create_table :schedule do
     primary_key :id
@@ -68,6 +91,29 @@ unless DB.table_exists? (:outfits)
     string      :image_file
     string      :date
   end
+
+  DB[:outfits].insert( id: 1,
+                          image_file:   "justin.jpg",
+                          date:         "July 31, 2014")
+
+  DB[:outfits].insert( id: 2,
+                          image_file:   "old_polo.jpg",
+                          date:         "March 25, 1914")
+
+  DB[:outfits].insert( id: 3,
+                          image_file:   "watts_night.jpg",
+                          date:         "March 25, 1985")
+
+  DB[:outfits].insert( id: 4,
+                          image_file:   "alli_lane.jpg",
+                          date:         "September 28, 1988")
+
+  DB[:outfits].insert( id: 5,
+                          image_file:   "horacio_jobs.jpg",
+                          date:         "January 5, 1972")
+
+
+
 end
 
 unless DB.table_exists? (:home)

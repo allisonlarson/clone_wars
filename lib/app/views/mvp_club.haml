@@ -6,12 +6,14 @@
       =@front_view.title
     %div
       =@front_view.description
+    %br
     %div
       %label Name:
       %input
       %br
       %label Email:
       %input
+      %br
       %label Birth Month:
       %select
         %option January
@@ -26,9 +28,17 @@
         %option October
         %option November
         %option December
+      %br
+      %br
+      %button{:type => 'submit', :onclick => "showAlert()"} JOIN
+      %br
+      %br
+      %p#aha_demo_orange
+      :javascript
+        function showAlert() {
+            document.getElementById("aha_demo_orange").innerHTML = "Thank You! We have recorded your information.";
+        }
 
-      %button{:type => 'submit' } JOIN
       This is a private mailing list that will never be sold or given away for any reason. You can unsubscribe at anytime.
-
   .aha_right_picture
     %img{:src => "/images/#{@front_view.image_file}", :width => "656", :height => "453"}

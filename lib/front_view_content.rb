@@ -116,6 +116,63 @@ class FrontViewContent
    1401 Wewatta, Players validation required."
  end
 
+ def self.blog_title_1
+   "The Tie Dilema"
+ end
+
+ def self.blog_content_1
+  "A tie can say a lot about a man and his style depending on the way it is worn,
+  or if it is worn at all. Many men today struggle with the correct amount of
+  “dress” to throw on each morning; you want enough to be taken seriously yet
+  retain a comfortable, casual look that works in all settings. As my personal
+  style has evolved over the years, I have found that a clean and professional
+  casual look can do more for me than a full-blown suit-and-tie ever could. With
+  this knowledge has come the realization that I can for the most part do away
+  with a staple of the business suit; the tie. I’ve never quite fully
+  embraced ties; the tightness on my neck and hassle that comes with them gives
+  me the undesired feeling of conformity. Now that I have discovered shirt makers
+  like Equilibrio, Thomas Dean and Bugatchi, wearing a tie with one of their
+  beautiful dress shirts is the last thing on my mind. I feel that shirts like
+  these give my look just the amount of professionalism I need while allowing
+  for a comfortable, casual fit. However, should the occasion arise for me to
+  submit myself to a tie, I have found a great selection from JZ Richards and
+  Robert Graham along with my favorite shirts at Players Clothing Company in LoDo.
+  At Players, they understand the perfect balance between casual and professional
+  that every man should strive for and the brands they carry fit perfectly into
+  my blueprint."
+ end
+
+ def self.blog_author_1
+   "Player"
+ end
+
+ def self.blog_title_2
+   "The perfect chino"
+ end
+
+ def self.blog_content_2
+   " If you’re looking for a classic, understated chino that can
+   handle any occasion, then look no further than Peter Millar and
+    Hiltl at Players Clothing Company in Lodo. Peter Millar’s 100%
+    cotton brushed twill and Hiltl’s Nano Tech cotton stain resistant
+    technology come in traditional colors like khaki and stone or newer
+    ones like ink. They have done wonders for my look and are the perfect
+     pieces to a classy, business casual wardrobe that can only be found
+     at Players Clothing. Living in Denver all my life, it often proves
+      a difficult task to find just the right look for my laid-back business
+       lifestyle, but clothing like these chinos are one of many reasons I
+       frequent the 15th and Wazee clothier. I originally bought one pair,
+       but just one week into wearing them I headed back into Players and
+       bought all the other colors too, and added a couple fresh new shirts
+       from popular lines Robert Graham and EQ. Beautiful and reasonably
+       priced lines like these at Players keep me in style and in the game
+      like never before."
+ end
+
+ def self.blog_author_2
+   "Player"
+ end
+
  def self.mvp_title
    "Get in the Game: Players M.V.P. Club"
  end

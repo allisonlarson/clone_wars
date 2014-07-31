@@ -1,0 +1,17 @@
+#blogger.row
+- @bloggers.each do |blogger|
+  .aha_blogger_box
+    %h2.aha_blogger_title
+      %a.author.vcard{:href => "#"}
+        = "#{blogger.title}"
+    %p
+      %span.meta-prep.meta-prep-author By
+      = "#{blogger.author}".upcase + " | " + "Published: " + "#{blogger.created_at}"
+    %p
+    = blogger.content
+    %p
+  - if session[:user] == "player"
+    .actions
+      %a.button{:href => "/admin/edit_blog/#{blogger.id}"} EDIT
+      %br
+      %br
