@@ -1,4 +1,4 @@
-require_relative '../databases'
+require_relative '../schema'
 
 class Blogger < Sequel::Model(:blogger)
 end
