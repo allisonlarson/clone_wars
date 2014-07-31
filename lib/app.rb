@@ -117,6 +117,17 @@ class PlayerApp < Sinatra::Base
     end
   end
 
+  post '/create_post' do
+    @blogger = Blogger.new
+    @blogger.set_fields(params[:blogger], [:author, :title, :content, :tag])
+    @blogger.created_at = Time.now.to_s
+    if @blogger.save
+      redirect "/admin/update_dashboard"
+    else
+      redirect "/admin/new_blogpost"
+    end
+  end
+
   # post 'admin/update/:id' do
   #   @form_view = FrontView[params[:id].to_i]
   #   @front_view.set_fields(params[:front_view], [:title, :description, :image_file])
@@ -131,6 +142,11 @@ class PlayerApp < Sinatra::Base
   get '/admin/new_front_view' do
     @front_view = FrontView.new
     haml :new_front_view
+  end
+
+  get '/admin/new_blogpost' do
+    @blogger = Blogger.new
+    haml :new_blogpost
   end
 
   get '/admin/edit/:id' do
@@ -183,7 +199,7 @@ class PlayerApp < Sinatra::Base
     @blogger.update_fields(params[:blogger], [:title, :author, :content, :tag])
     @blogger.updated_at = Time.now.to_s
     if @blogger.save
-      redirect "/admin/update_dashboard"
+      redirect "/blogger"
     else
       redirect "/edit_blog/#{@blogger.id}"
     end

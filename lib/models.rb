@@ -58,16 +58,14 @@ unless DB.table_exists? (:blogger)
   end
 
   DB[:blogger].insert( id: 1,
-                          title:       "a title blog",
-                          author:      "an author",
-                          content:     "some content",
-                          tag:         "real tag")
+                          title:       FrontViewContent.blog_title_1,
+                          author:      FrontViewContent.blog_author_1,
+                          content:     FrontViewContent.blog_content_1)
 
   DB[:blogger].insert( id: 2,
-                          title:       "a title blog2",
-                          author:      "an author2",
-                          content:     "some content2",
-                          tag:         "real tag2")
+                          title:       FrontViewContent.blog_title_2,
+                          author:      FrontViewContent.blog_author_2,
+                          content:     FrontViewContent.blog_content_2)
 end
 
 class Blogger < Sequel::Model(:blogger)

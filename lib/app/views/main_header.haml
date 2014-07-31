@@ -54,6 +54,9 @@
         %li.page_item.page-item-25
           - if session[:user] == "player"
             %a{:href => "/admin/update_dashboard"} DASHBOARD
+        %li.page_item.page-item-25
+          - if session[:user] == "player"
+            %a{:href => "/admin/new_blogpost"} POST
     #socialLayout
       %a{:href => "https://www.facebook.com/pages/Players-Clothing/218109244866620", :target => "_blank", :title => "facebook.com"}
         %img{:alt => "Facebook", :height => "27", :src => "http://playersclothing.com/wp-content/themes/playersclothing/images/facebook-logo.png", :width => "27"}/

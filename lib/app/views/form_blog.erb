@@ -1,10 +1,10 @@
 <div class="row">
   <form accept-charset="utf-8" action="<%= route %>" method="<%= action %>", enctype='multipart/form-data'>
     <label for="title">Title:</label>
-    <input id="title" name="blogger[title]" type="text" value="<%= @blogger.title %>">/</input>
+    <input id="title" name="blogger[title]" type="text" value="<%= @blogger.title %>">
     <br/>
     <label for="author">Author:</label>
-    <input id="author" name="blogger[author]" type="text" value="<%= @blogger.author %>">/</input>
+    <input id="author" name="blogger[author]" type="text" value="<%= @blogger.author %>">
     <br/>
     <textarea rows=14 id="content" name="blogger[content]" type="text"><%= @blogger.content %></textarea>
     <br/>
