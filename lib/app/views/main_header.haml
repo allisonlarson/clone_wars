@@ -16,9 +16,9 @@
         %a{:href => "/outfit_of_the_week", :title => "playersclothing.com/whats-new"} Starting Lineup
         |
         = succeed "Read" do
-          %a.fanTalkIcon{:href => "/blog", :title => "playersclothing.com/blog"}
+          %a.fanTalkIcon{:href => "/blogger", :title => "playersclothing.com/blog"}
         the latest
-        %a{:href => "/blog", :title => "playersclothing.com/blog"} Fan Talk
+        %a{:href => "/blogger", :title => "playersclothing.com/blog"} Fan Talk
     / class="brandingRightJustified"
   / #branding
   #access
@@ -53,12 +53,13 @@
             %a{:href => "/admin/update_dashboard"} DASHBOARD
         %li.page_item.page-item-25
           - if session[:user] == "player"
-            %a{:href => "/admin/new_blogpost"} POST
+            %a{:href => "/admin/new_blogpost"} POST ON THE BLOG
+        %li.page_item.page-item-25
+          - if session[:user] == "player"
+            %a{:href => "/admin/update_outfit_of_the_week"} ADD AN OUTFIT
     #socialLayout
       %a{:href => "https://www.facebook.com/pages/Players-Clothing/218109244866620", :target => "_blank", :title => "facebook.com"}
         %img{:alt => "Facebook", :height => "27", :src => "http://playersclothing.com/wp-content/themes/playersclothing/images/facebook-logo.png", :width => "27"}/
-      %a{:href => "http://pinterest.com/playersclothing/boards/", :target => "_blank", :title => "pinterest.com"}
-        %img{:alt => "Pinterest", :height => "27", :src => "http://playersclothing.com/wp-content/themes/playersclothing/images/pinterest-logo.png", :width => "27"}/
       %a{:href => " https://twitter.com/playerslodo", :target => "_blank", :title => "twitter.com"}
         %img{:alt => "Twitter", :height => "27", :src => "http://playersclothing.com/wp-content/themes/playersclothing/images/twitter-logo.png", :width => "27"}/
   / #access

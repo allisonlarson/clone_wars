@@ -1,4 +1,8 @@
-.aha_background { background: url(images/backg-viewport.gif) }
+.aha_background {
+  background: url(images/backg-viewport.gif);
+  background-size: cover;
+  }
+
 .aha_blogger_box {
   width: 600px;
 }
@@ -12,7 +16,17 @@
 #aha_demo_orange {
   color: orange
 }
+.aha_outfit_of_the_week {
+  font-size: 28px;
+  font-weight: bold;
+  max-width: 45%;
+  float:left;
+  margin: 30px;
+}
 
+.aha_outfit_title {
+  margin-bottom:20px
+}
 
 .catablog-row {min-height:210px; height:auto !important; height:210px;}
 .catablog-image {width:150px;} .catablog-title {margin:0 0 0 160px !important;}

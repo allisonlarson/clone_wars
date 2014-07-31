@@ -1,1 +1,8 @@
-
+#outfit.row
+- @outfits.each do |outfit|
+  %strong
+  .aha_outfit_of_the_week
+    = "#{outfit.date}"
+    %br
+    %br
+    %img{:src => "/images/#{outfit.image_file}", :width => "400px"}

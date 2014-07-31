@@ -56,6 +56,7 @@ class PlayerApp < Sinatra::Base
   end
 
   get '/outfit_of_the_week' do
+    @outfits = Outfits.all
     haml :outfit_of_the_week
   end
 
@@ -145,7 +146,7 @@ class PlayerApp < Sinatra::Base
 
   post '/create_post' do
     @blogger = Blogger.new
-    @blogger.set_fields(params[:blogger], [:author, :title, :content, :tag])
+    @blogger.set_fields(params[:blogger], [:author, :title, :content])
     @blogger.created_at = Time.now.to_s
     if @blogger.save
       redirect "/blogger"
@@ -187,7 +188,7 @@ class PlayerApp < Sinatra::Base
 
   post '/admin/edit_blog/:id' do
     @blogger = Blogger[params[:id].to_i]
-    @blogger.set_fields(params[:blogger], [:title, :author, :content, :tag])
+    @blogger.set_fields(params[:blogger], [:title, :author, :content])
     @blogger.created_at = Time.now.to_s
     if @blogger.save
       redirect "/admin/update_dashboard"
@@ -210,7 +211,7 @@ class PlayerApp < Sinatra::Base
 
   post '/admin/update_blog/:id' do
     @blogger = Blogger[params[:id].to_i]
-    @blogger.update_fields(params[:blogger], [:title, :author, :content, :tag])
+    @blogger.update_fields(params[:blogger], [:title, :author, :content])
     @blogger.updated_at = Time.now.to_s
     if @blogger.save
       redirect "/blogger"

@@ -6,7 +6,7 @@
         = "#{blogger.title}"
     %p
       %span.meta-prep.meta-prep-author By
-      = session[:user].upcase + " | " + "Published: " + "#{blogger.created_at}"
+      = "#{blogger.author}".upcase + " | " + "Published: " + "#{blogger.created_at}"
     %p
     = blogger.content
     %p
