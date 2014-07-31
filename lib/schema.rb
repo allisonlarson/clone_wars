@@ -52,6 +52,28 @@ Sequel::Model.plugin(:schema)
 
 end
 
+unless DB.table_exists? (:blogger)
+  DB.create_table :blogger do
+    primary_key  :id
+    string       :title
+    string       :author
+    text         :content
+    string       :tag
+    timestamp    :created_at
+    timestamp    :updated_at
+  end
+
+  DB[:blogger].insert( id: 1,
+                          title:   FrontViewContent.blog_title_1,
+                          author:  FrontViewContent.blog_author_1,
+                          content: FrontViewContent.blog_content_1)
+
+  DB[:blogger].insert( id: 2,
+                          title:   FrontViewContent.blog_title_2,
+                          author:  FrontViewContent.blog_author_2,
+                          content: FrontViewContent.blog_content_2)
+end
+
 unless DB.table_exists? (:schedule)
   DB.create_table :schedule do
     primary_key :id

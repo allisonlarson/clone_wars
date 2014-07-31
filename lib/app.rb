@@ -1,14 +1,19 @@
 require 'Haml'
 require 'sinatra'
-require 'pry'
-require_relative 'models'
+require_relative 'image_uploader'
+require_relative 'models/schedule'
+require_relative 'models/blogger'
+require_relative 'models/outfits'
+require_relative 'models/frontview'
+require_relative 'models/home'
+
 
 class PlayerApp < Sinatra::Base
-  set :method_override, true
-  set :root, 'lib/app'
-  set :views, File.dirname(__FILE__) + '/app/views'
-  set :images, File.dirname(__FILE__) + '/app/public/images'
-  set :session_secret, "tardis"
+  set    :method_override, true
+  set    :root, 'lib/app'
+  set    :views, File.dirname(__FILE__) + '/app/views'
+  set    :images, File.dirname(__FILE__) + '/app/public/images'
+  set    :session_secret, "tardis"
   enable :sessions
 
   configure do
@@ -18,12 +23,15 @@ class PlayerApp < Sinatra::Base
 
   before do
     @schedule = Schedule.first
+    @home     = Home.first
+    @outfits  = Outfits.all
+    @blogger  = Blogger.all
   end
 
   helpers do
     def authenticate!
       if params[:user] == "ad" && params[:password] == "ad"
-        session[:user] == "admin"
+        session[:user] == "player"
       end
     end
   end
@@ -58,10 +66,11 @@ class PlayerApp < Sinatra::Base
 
   get '/find_us' do
     @front_view = FrontView[5]
-    haml :front_view
+    haml :find_us
   end
 
   get '/mvp_club' do
+    @front_view = FrontView[6]
     haml :mvp_club
   end
 
@@ -104,6 +113,25 @@ class PlayerApp < Sinatra::Base
     haml :blogger_main
   end
 
+  get '/contact' do
+    haml :contact
+  end
+
+  post '/contact' do
+    Pony.mail(
+      :from => params[:name] + "<" + params[:email] + ">",
+      :to => 'allieisclever@gmail.com',
+      :subject => params[:name] + " has contacted you about Players Clothing",
+      :body => params[:message],
+      :attachments => {params[:image][:filename] => File.read(params[:image][:tempfile])
+      })
+    redirect '/success'
+  end
+
+  get '/success' do
+    haml :success
+  end
+
   post '/create' do
     @front_view = FrontView.new
     @front_view.set_fields(params[:front_view], [:title, :description, :image_file])
@@ -120,22 +148,11 @@ class PlayerApp < Sinatra::Base
     @blogger.set_fields(params[:blogger], [:author, :title, :content, :tag])
     @blogger.created_at = Time.now.to_s
     if @blogger.save
-      redirect "/admin/update_dashboard"
+      redirect "/blogger"
     else
       redirect "/admin/new_blogpost"
     end
   end
-
-  # post 'admin/update/:id' do
-  #   @form_view = FrontView[params[:id].to_i]
-  #   @front_view.set_fields(params[:front_view], [:title, :description, :image_file])
-  #   @form_view.updated_at = Time.now.to_s
-  #   if @form_view.save
-  #     redirect "/"
-  #   else
-  #     redirect "admin/edit/#{@form_view.id}"
-  #   end
-  # end
 
   get '/admin/new_front_view' do
     @front_view = FrontView.new
@@ -182,7 +199,6 @@ class PlayerApp < Sinatra::Base
   post '/admin/update/:id' do
     @front_view = FrontView[params[:id].to_i]
     ImageUploader.load(@front_view, params['image'])
-    binding.pry
     @front_view.update_fields(params[:front_view], [:title, :description])
     @front_view.updated_at = Time.now.to_s
     if @front_view.save
@@ -208,20 +224,12 @@ class PlayerApp < Sinatra::Base
     haml :update_home
   end
 
-  get '/admin/update_who_we_are' do
-    authenticate!
-    @front_view = FrontView.new
-    haml :update_who_we_are, locals: {action: "post", route: "/create"}
-  end
-
-  get '/admin/update_what_we_carry' do
-    authenticate!
-    haml :update_what_we_carry
-  end
-
-  get '/admin/update_what_we_do' do
-    authenticate!
-    haml :update_what_we_do
+  post '/admin/update_home' do
+    @home = Home.first
+    ImageUploader.load(@home, params['image'])
+    if @home.save
+      redirect "/admin/update_dashboard"
+    end
   end
 
   get '/admin/update_outfit_of_the_week' do
@@ -229,14 +237,13 @@ class PlayerApp < Sinatra::Base
     haml :update_outfit_of_the_week
   end
 
-  get '/admin/update_gift_cards' do
-    authenticate!
-    haml :update_gift_cards
-  end
-
-  get '/admin/update_find_us' do
-    authenticate!
-    haml :update_find_us
+  post '/admin/update_outfit_of_the_week' do
+    @outfit = Outfits.create
+    ImageUploader.load(@outfit, params['image'])
+    @outfit.date = params['date']
+    if @outfit.save
+      redirect "/admin/update_dashboard"
+    end
   end
 
   get '/admin/update_blog' do

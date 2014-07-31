@@ -173,6 +173,16 @@ class FrontViewContent
    "Player"
  end
 
+ def self.mvp_title
+   "Get in the Game: Players M.V.P. Club"
+ end
 
+ def self.mvp_description
+   "Join the Players M.V.P. Club and receive “e-only” offers, priority notice of special events like our trunk shows and store-wide promotions. Also, keep up to date on the latest styles and new products that arrive into our store.
 
+    New members receive a
+    $25 Savings Certificate
+    for in-store purchase of $100 or more."
+
+  end
 end

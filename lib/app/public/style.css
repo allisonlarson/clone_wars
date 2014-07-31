@@ -755,6 +755,12 @@ ul.children {width: 22em !important} /* ADDED */
 	width: 960px;
 }
 
+.aha_home {
+  width: 960px;
+  height: 462px;
+  background: url(images/backg-content-image.png) no-repeat;
+}
+
 .aha_left_text { /* ADDED */
 	padding: 12px 4px 0 0;
 	width: 270px; /* Actual 274px */

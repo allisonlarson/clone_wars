@@ -1,15 +1,9 @@
 - if session[:user] == "player"
-  %form{:action => "/admin/update_home", :method => "POST"}
+  %form{:action => "/admin/update_home", :method => "POST", :enctype => 'multipart/form-data'}
     %label Picture 1
-    %input#picture-button1{:name => "home[picture1]", :type => "file"}
+    %input#picture-button1{:name => "image", :type => "file"}
     %br
-    %label Picture 2
-    %input#picture-button2{:name => "home[picture1]", :type => "file"}
-    %br
-    %label Picture 3
-    %input#picture-button3{:name => "home[picture1]", :type => "file"}
-
-    %br
+    %button{:type => "submit"} Save image
     %a{:href => "/admin/update_dashboard"} Temporary shortcut to dashboard
 - else
   = haml :not_here
