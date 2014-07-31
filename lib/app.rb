@@ -40,18 +40,18 @@ class PlayerApp < Sinatra::Base
   end
 
   get '/who_we_are' do
-    @front_view = FrontView[1]
-    haml :who_we_are
+    front_view = FrontView[1]
+    haml :basic_page, locals: {front_view: front_view}
   end
 
   get '/what_we_carry' do
     @front_view = FrontView[2]
-    haml :what_we_carry
+    haml :basic_page, locals: {front_view: front_view}
   end
 
   get '/what_we_do' do
-    @front_view = FrontView[3]
-    haml :what_we_do
+    front_view = FrontView[3]
+    haml :basic_page, locals: {front_view: front_view}
   end
 
   get '/outfit_of_the_week' do
@@ -60,18 +60,18 @@ class PlayerApp < Sinatra::Base
   end
 
   get '/gift_cards' do
-    @front_view = FrontView[4]
-    haml :gift_cards
+    front_view = FrontView[4]
+    haml :basic_page, locals: {front_view: front_view}
   end
 
   get '/find_us' do
-    @front_view = FrontView[5]
-    haml :find_us
+    front_view = FrontView[5]
+    haml :basic_page, locals: {front_view: front_view}
   end
 
   get '/mvp_club' do
-    @front_view = FrontView[6]
-    haml :mvp_club
+    front_view = FrontView[6]
+    haml :basic_page, locals: {front_view: front_view}
   end
 
   get '/blogger' do
