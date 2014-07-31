@@ -1,4 +1,13 @@
 .aha_background { background: url(images/backg-viewport.gif) }
+.aha_blogger_box {
+  width: 600px;
+}
+.aha_blogger_title {
+  font-family: Arial,sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 20px;
+}
 
 
 .catablog-row {min-height:210px; height:auto !important; height:210px;}
