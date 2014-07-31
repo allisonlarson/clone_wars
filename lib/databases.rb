@@ -44,6 +44,12 @@ Sequel::Model.plugin(:schema)
                           title:       FrontViewContent.find_us_title,
                           description: FrontViewContent.find_us_description,
                           image_file:  "find_us.jpg")
+
+  DB[:front_view].insert( id: 6,
+                          title:       FrontViewContent.mvp_title,
+                          description: FrontViewContent.mvp_description,
+                          image_file:  "mvp.jpg")
+
 end
 
 unless DB.table_exists? (:schedule)
@@ -51,12 +57,15 @@ unless DB.table_exists? (:schedule)
     primary_key :id
     string      :schedule
   end
+
+  DB[:schedule].insert(id:1,
+                      schedule: 'Mon-Fri 10am-6pm | Sat 10am-5:30pm')
 end
 
 unless DB.table_exists? (:outfits)
   DB.create_table :outfits do
     primary_key :id
-    string      :image
+    string      :image_file
     string      :date
   end
 end

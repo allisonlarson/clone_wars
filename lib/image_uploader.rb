@@ -11,7 +11,6 @@ class ImageUploader < CarrierWave::Uploader::Base
    uploader = ImageUploader.new
    if image != nil
      uploader.store!(image)
-     binding.pry
      database[:image_file] = image[:filename]
    end
  end

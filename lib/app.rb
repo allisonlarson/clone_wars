@@ -23,6 +23,7 @@ class PlayerApp < Sinatra::Base
   before do
     @schedule = Schedule.first
     @home     = Home.first
+    @outfits  = Outfits.all
   end
 
   helpers do
@@ -71,6 +72,7 @@ class PlayerApp < Sinatra::Base
   end
 
   get '/mvp_club' do
+    @front_view = FrontView[6]
     haml :mvp_club
   end
 
@@ -118,17 +120,6 @@ class PlayerApp < Sinatra::Base
       redirect "/admin/new_front_view"
     end
   end
-
-  # post 'admin/update/:id' do
-  #   @form_view = FrontView[params[:id].to_i]
-  #   @front_view.set_fields(params[:front_view], [:title, :description, :image_file])
-  #   @form_view.updated_at = Time.now.to_s
-  #   if @form_view.save
-  #     redirect "/"
-  #   else
-  #     redirect "admin/edit/#{@form_view.id}"
-  #   end
-  # end
 
   get '/admin/new_front_view' do
     @front_view = FrontView.new
@@ -179,6 +170,15 @@ class PlayerApp < Sinatra::Base
   get '/admin/update_outfit_of_the_week' do
     authenticate!
     haml :update_outfit_of_the_week
+  end
+
+  post '/admin/update_outfit_of_the_week' do
+    @outfit = Outfits.create
+    ImageUploader.load(@outfit, params['image'])
+    @outfit.date = params['date']
+    if @outfit.save
+      redirect "/admin/update_dashboard"
+    end
   end
 
   get '/admin/update_blog' do
