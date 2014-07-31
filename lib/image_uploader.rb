@@ -1,4 +1,5 @@
-require 'pry'
+require 'carrierwave'
+
 
 class ImageUploader < CarrierWave::Uploader::Base
  storage :file

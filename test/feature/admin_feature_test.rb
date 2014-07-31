@@ -62,7 +62,7 @@ class AdminUpdatesPage <FeatureTest
     assert page.has_content?('For sure for sure')
   end
 
-  def test_admin_can_view_edit_what_we_carry
+  def test_admin_can_view_what_we_carry
     login
     visit '/admin/edit/2'
     assert_equal 200, page.status_code

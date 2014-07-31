@@ -4,13 +4,21 @@ require_relative './front_view_content'
 
 Sequel::Model.plugin(:schema)
 
-  if ENV['RACK_ENV'] == 'test'
-    DB = Sequel.sqlite('database_test.db')
+def self.unless_test(&block)
+  if ENV['test']
+    nil
   else
-    DB = Sequel.sqlite('database.db')
+    block.call
   end
+end
 
-  unless DB.table_exists? (:front_view)
+if ENV['RACK_ENV'] == 'test'
+  DB = Sequel.sqlite('database_test.db')
+else
+  DB = Sequel.sqlite('database.db')
+end
+
+unless DB.table_exists? (:front_view)
     DB.create_table :front_view do
       primary_key :id
       string      :title
@@ -23,17 +31,18 @@ Sequel::Model.plugin(:schema)
   DB[:front_view].insert( id: 1,
                          title:       FrontViewContent.who_we_are_title,
                          description: FrontViewContent.who_we_are_description,
-                         image_file:  "who_we_are.jpg")
+                         image_file:  unless_test { "who_we_are.jpg" })
+
 
   DB[:front_view].insert( id: 2,
                           title:       FrontViewContent.what_we_carry_title,
                           description: FrontViewContent.what_we_carry_description,
-                          image_file:  "what_we_carry.jpg")
+                          image_file:  unless_test { "what_we_carry.jpg" })
 
   DB[:front_view].insert( id: 3,
                           title:       FrontViewContent.what_we_do_title,
                           description: FrontViewContent.what_we_do_description,
-                          image_file:  "what_we_do.jpg")
+                          image_file:  unless_test {"what_we_do.jpg"})
 
   DB[:front_view].insert( id: 4,
                           title:       FrontViewContent.gift_cards_title,
