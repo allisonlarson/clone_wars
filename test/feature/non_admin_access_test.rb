@@ -20,5 +20,4 @@ class NonAdminAccess <FeatureTest
     assert page.has_css?("#game")
   end
 
-  #add tests for rest of pages
 end

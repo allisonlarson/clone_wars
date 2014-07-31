@@ -6,9 +6,9 @@ Sequel::Model.plugin(:schema)
 
 def self.unless_test(&block)
   if ENV['test']
-    nil
-  else
     block.call
+  else
+    nil
   end
 end
 
@@ -47,17 +47,17 @@ unless DB.table_exists? (:front_view)
   DB[:front_view].insert( id: 4,
                           title:       FrontViewContent.gift_cards_title,
                           description: FrontViewContent.gift_cards_description,
-                          image_file:  "gift_cards.jpg")
+                          image_file:  unless_test {"gift_cards.jpg"})
 
   DB[:front_view].insert( id: 5,
                           title:       FrontViewContent.find_us_title,
                           description: FrontViewContent.find_us_description,
-                          image_file:  "find_us.jpg")
+                          image_file:  unless_test {"find_us.jpg"})
 
   DB[:front_view].insert( id: 6,
                           title:       FrontViewContent.mvp_title,
                           description: FrontViewContent.mvp_description,
-                          image_file:  "mvp.jpg")
+                          image_file:  unless_test {"mvp.jpg"})
 
 end
 

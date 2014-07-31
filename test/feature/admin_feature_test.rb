@@ -31,15 +31,6 @@ class AdminUpdatesPage <FeatureTest
     visit '/admin/update_home'
     assert_equal 200, page.status_code
     assert page.has_css?("#picture-button1")
-    assert page.has_css?("#picture-button2")
-    assert page.has_css?("#picture-button3")
-  end
-
-  def test_admin_can_upload_home_photos
-    login
-    visit '/admin/update_home'
-    assert_equal 200, page.status_code
-    #code that uploads photos here
   end
 
   def test_admin_can_view_admin_who_we_are
@@ -76,8 +67,9 @@ class AdminUpdatesPage <FeatureTest
     fill_in('title', with: 'THIS IS')
     fill_in('description', with: 'WHAT WE CARRY')
     click_on('Save Front View')
+    assert page.has_content?('Wellcome player')
     visit '/what_we_carry'
-    assert page.has_content?("THIS IS")
+    assert page.has_content?('THIS IS')
     assert page.has_content?('WHAT WE CARRY')
   end
 
@@ -86,7 +78,7 @@ class AdminUpdatesPage <FeatureTest
     visit '/admin/edit/3'
     fill_in('title', with: 'WE DO')
     fill_in('description', with: 'STUFF')
-    click_on('Save Front View')
+    click_button('Save Front View')
     visit '/what_we_do'
     assert page.has_content?('WE DO')
     assert page.has_content?('STUFF')
@@ -150,39 +142,9 @@ class AdminUpdatesPage <FeatureTest
     login
     visit '/admin/update_outfit_of_the_week'
     assert_equal 200, page.status_code
-    assert page.has_css?("input", :count => 3, :visible => true)
     assert page.has_css?("#update-date")
     assert page.has_css?("#file-upload")
-    assert page.has_button?("Upload Outfit")
-  end
-
-  def test_admin_can_edit_outfit_of_the_week
-    login
-    visit '/admin/update_outfit_of_the_week'
-    fill_in('date', :with => '1999')
-    page.find("#file-upload").click
-    #uploads file
-    #asserts file has been uploaded and date is '1999'
-  end
-
-  def test_admin_can_view_blog
-    login
-    visit '/admin/update_blog'
-    assert_equal 200, page.status_code
-    assert page.has_css?("input", :count => 4, :visible => true)
-    assert page.has_css?("#blog-author")
-    assert page.has_css?("#blog-date")
-    assert page.has_css?("#blog-headline")
-    assert page.has_button?("Update Blog")
-  end
-
-  def test_admin_can_edit_blog
-    login
-    visit 'admin/update_blog'
-    #fill in stuff
-    #click submit
-    #verify stuff
-    #clear db
+    assert page.has_button?("Save Outfit")
   end
 
 end
