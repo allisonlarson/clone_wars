@@ -1,5 +1,3 @@
-require 'Haml'
-require 'sinatra'
 require_relative 'image_uploader'
 require_relative 'models/schedule'
 require_relative 'models/blogger'
